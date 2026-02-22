@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background: #0A0F1E;
-    color: #E5E7EB;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
@@ -15,35 +15,16 @@ body {
     align-items: center;
     padding: 20px;
     overflow-x: hidden;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.03) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 .container {
     width: 1400px;
-    background: rgba(18, 25, 40, 0.95);
-    border-radius: 24px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 255, 0.1);
-    padding: 28px;
-    border: 1px solid rgba(0, 255, 255, 0.15);
+    background-color: rgba(30, 41, 59, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border: 1px solid #334155;
     transform-origin: top center;
-    position: relative;
-    z-index: 1;
-    backdrop-filter: blur(10px);
 }
 
 @media (max-width: 1399px) {
@@ -68,12 +49,12 @@ body::before {
     }
 }
 
-/* هدر نئونی */
+/* GLOW EFFECT ADDED - خط نئونی بالای هدر با افکت درخشش */
 header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    border-bottom: 2px solid #3b82f6;
     position: relative;
     padding-top: 10px;
     display: flex;
@@ -84,24 +65,27 @@ header {
 header::after {
     content: '';
     position: absolute;
-    bottom: -1px;
-    left: 20%;
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        #00ffff, 
-        #ff00ff, 
-        #00ffff, 
-        transparent
-    );
+    bottom: -2px;
+    left: 30%;
+    width: 40%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     border-radius: 2px;
-    animation: neonPulse 3s infinite;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px #3b82f6;
+    animation: neonPulse 2s infinite;
 }
 
+/* GLOW EFFECT ADDED - انیمیشن چشمک زدن نئون */
 @keyframes neonPulse {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; box-shadow: 0 0 10px #00ffff; }
+    0%, 100% {
+        opacity: 0.8;
+        box-shadow: 0 0 15px #3b82f6;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 25px #3b82f6, 0 0 40px #8b5cf6;
+    }
 }
 
 .header-top {
@@ -122,31 +106,29 @@ header::after {
 }
 
 h1 {
-    font-size: 2.4rem;
-    margin-bottom: 8px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    color: #60a5fa;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
 }
 
 .subtitle {
-    color: #6B7280;
+    color: #94a3b8;
     font-size: 1rem;
     margin-top: 5px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
 }
 
-/* دکمه ماشین حساب با طراحی صرافی */
+/* GLOW EFFECT ADDED - درخشش سبز روی دکمه ماشین حساب */
 .calculator-btn {
-    padding: 10px 24px;
-    background: linear-gradient(135deg, #00c9a7, #00a3ff);
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #10b981, #059669);
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -154,64 +136,49 @@ h1 {
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-width: 140px;
     justify-content: center;
     margin-left: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .calculator-btn:hover {
+    background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+    /* GLOW EFFECT ADDED - افزایش درخشش */
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.5);
 }
 
-/* بخش بالانس شیشه‌ای نئون */
 .balance-container {
-    background: linear-gradient(145deg, #141B2B, #0D1222);
-    border-radius: 20px;
-    padding: 24px;
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    margin-bottom: 32px;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #475569;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 10px 30px -10px rgba(0, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.balance-container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
-    border-radius: 20px;
-    opacity: 0.1;
-    z-index: -1;
+    /* GLOW EFFECT ADDED - درخشش ملایم دور کانتینر بالانس */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.2);
 }
 
 .balance-main {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
 }
 
 .balance-icon {
-    background: linear-gradient(135deg, #1E2A45, #141F36);
-    width: 70px;
-    height: 70px;
-    border-radius: 18px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    color: #00ffff;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    font-size: 1.5rem;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .balance-info {
@@ -220,32 +187,28 @@ h1 {
 }
 
 .balance-title {
-    color: #9CA3AF;
+    color: #94a3b8;
     font-size: 0.9rem;
-    margin-bottom: 6px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 5px;
 }
 
 .balance-value {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    color: #00ffff;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-    line-height: 1.2;
+    color: #10b981;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
 }
 
 #currentAccountName {
-    color: #9CA3AF;
-    font-size: 0.85rem;
-    margin-top: 6px;
-    font-weight: 400;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-top: 5px;
 }
 
 .balance-details {
     display: flex;
-    gap: 35px;
+    gap: 25px;
 }
 
 .balance-detail {
@@ -255,39 +218,36 @@ h1 {
 }
 
 .detail-label {
-    color: #9CA3AF;
+    color: #cbd5e1;
     font-size: 0.8rem;
-    margin-bottom: 6px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-bottom: 4px;
 }
 
 .detail-value {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: #E5E7EB;
 }
 
 #totalPnL {
-    color: #00ffff;
+    color: #10b981;
 }
 
 #activeAccountIndicator {
-    color: #ff00ff;
+    color: #3b82f6;
 }
 
 .balance-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
+/* GLOW EFFECT ADDED - درخشش روی دکمه‌های بالانس */
 .balance-btn {
-    padding: 10px 20px;
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    border-radius: 12px;
-    color: #00ffff;
+    padding: 10px 16px;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 8px;
+    color: #60a5fa;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
@@ -298,24 +258,24 @@ h1 {
 }
 
 .balance-btn:hover {
-    background: #2A3655;
-    border-color: #00ffff;
+    background: rgba(59, 130, 246, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.6);
 }
 
 .balance-btn.active {
-    background: #ff00ff20;
-    border-color: #ff00ff;
-    color: #ff00ff;
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
 }
 
-/* مودال‌های مدرن */
 .modal-box {
-    background: #141B2B;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.95);
+    border-radius: 12px;
+    border: 1px solid #475569;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     max-height: 0;
     overflow: hidden;
@@ -333,52 +293,57 @@ h1 {
     padding: 25px;
     border-width: 1px;
     margin-top: 15px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #475569;
 }
 
 .modal-title {
-    color: #00ffff;
-    font-size: 1.3rem;
+    color: #60a5fa;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 600;
+    gap: 10px;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
 }
 
+/* GLOW EFFECT ADDED - درخشش قرمز روی دکمه بستن */
 .modal-close {
-    background: #1E2A45;
-    border: 1px solid #ff00ff40;
-    color: #ff00ff;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 1.1rem;
 }
 
 .modal-close:hover {
-    background: #ff00ff20;
+    background: rgba(239, 68, 68, 0.2);
     transform: rotate(90deg);
-    border-color: #ff00ff;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+    border-color: rgba(239, 68, 68, 0.6);
 }
 
 .modal-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-bottom: 22px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .modal-input-group {
@@ -387,7 +352,7 @@ h1 {
 }
 
 .modal-label {
-    color: #9CA3AF;
+    color: #cbd5e1;
     font-size: 0.9rem;
     margin-bottom: 8px;
     display: flex;
@@ -397,160 +362,159 @@ h1 {
 
 .modal-input {
     width: 100%;
-    padding: 14px;
-    background: #0D1222;
-    border: 1px solid #2E3A55;
-    border-radius: 12px;
-    color: #E5E7EB;
-    font-size: 0.95rem;
+    padding: 12px;
+    background-color: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #f1f5f9;
+    font-size: 0.9rem;
     transition: all 0.3s;
 }
 
 .modal-input:focus {
     outline: none;
-    border-color: #00ffff;
-    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .modal-buttons {
     display: flex;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .modal-btn {
     flex: 1;
-    padding: 14px;
+    padding: 12px;
     border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .modal-btn-primary {
-    background: linear-gradient(135deg, #00ffff, #00a3ff);
-    color: #0A0F1E;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
 }
 
 .modal-btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 .modal-btn-secondary {
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    color: #E5E7EB;
+    background-color: #475569;
+    color: #e2e8f0;
 }
 
 .modal-btn-secondary:hover {
-    background: #2A3655;
+    background-color: #64748b;
     transform: translateY(-2px);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3), 0 0 15px rgba(100, 116, 139, 0.3);
 }
 
 .modal-btn-success {
-    background: linear-gradient(135deg, #00ffaa, #00c9a7);
-    color: #0A0F1E;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
 }
 
 .modal-btn-success:hover {
+    background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 255, 170, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
-/* دکمه‌های پیش‌فرض */
 .preset-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 15px;
+    gap: 10px;
+    margin-top: 10px;
 }
 
+/* GLOW EFFECT ADDED - درخشش روی دکمه‌های پیش‌فرض */
 .preset-btn {
-    padding: 10px;
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    border-radius: 10px;
-    color: #9CA3AF;
+    padding: 8px 5px;
+    background: rgba(71, 85, 105, 0.3);
+    border: 1px solid #475569;
+    border-radius: 6px;
+    color: #e2e8f0;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.2s;
     text-align: center;
 }
 
 .preset-btn:hover {
-    border-color: #00ffff;
-    color: #00ffff;
+    background: rgba(59, 130, 246, 0.3);
+    border-color: #3b82f6;
     transform: translateY(-2px);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    color: #fff;
 }
 
-/* نمایش بالانس فعلی */
 .current-balance-display {
-    background: linear-gradient(135deg, #00ffff10, #ff00ff10);
-    border: 1px solid #00ffff30;
-    border-radius: 12px;
-    padding: 18px;
-    margin-top: 20px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .current-balance-label {
-    color: #9CA3AF;
-    font-size: 0.95rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
 }
 
 .current-balance-value {
-    color: #00ffff;
-    font-size: 1.3rem;
+    color: #10b981;
+    font-size: 1.1rem;
     font-weight: 700;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
-/* لیست حساب‌ها */
 .accounts-list-container {
-    max-height: 220px;
+    max-height: 200px;
     overflow-y: auto;
-    margin-bottom: 22px;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
-    padding: 12px;
-    background: #0D1222;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    padding: 10px;
+    background-color: rgba(15, 23, 42, 0.5);
 }
 
-.accounts-list-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.accounts-list-container::-webkit-scrollbar-track {
-    background: #1E2A45;
-    border-radius: 10px;
-}
-
-.accounts-list-container::-webkit-scrollbar-thumb {
-    background: #00ffff;
-    border-radius: 10px;
-}
-
+/* GLOW EFFECT ADDED - آیتم‌های حساب با درخشش */
 .account-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px;
-    border-bottom: 1px solid #2E3A55;
+    padding: 12px;
+    border-bottom: 1px solid #475569;
     transition: all 0.2s;
-    border-radius: 10px;
 }
 
 .account-item:hover {
-    background: #1E2A45;
+    background-color: rgba(59, 130, 246, 0.1);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    border-radius: 8px;
 }
 
 .account-item:last-child {
@@ -560,100 +524,104 @@ h1 {
 .account-info {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
 }
 
 .account-name {
     font-weight: 600;
-    color: #E5E7EB;
-    font-size: 1rem;
+    color: #f1f5f9;
 }
 
 .account-balance {
     font-size: 0.9rem;
-    color: #9CA3AF;
+    color: #94a3b8;
 }
 
 .account-actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .account-action-btn {
     background: none;
     border: none;
-    color: #9CA3AF;
+    color: #94a3b8;
     cursor: pointer;
-    font-size: 0.95rem;
-    padding: 6px;
-    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 5px;
+    border-radius: 4px;
     transition: all 0.2s;
 }
 
 .account-action-btn:hover {
-    color: #00ffff;
-    background: #00ffff10;
+    color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
 .account-action-btn.delete:hover {
-    color: #ff00ff;
-    background: #ff00ff10;
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 .active-account {
-    background: #00ffff10;
-    border: 1px solid #00ffff30;
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .active-badge {
-    background: #00ffff;
-    color: #0A0F1E;
+    background-color: #10b981;
+    color: white;
     font-size: 0.7rem;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-top: 6px;
-    display: inline-block;
-    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
-/* محتوای اصلی */
 .main-content {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 30px;
 }
 
 .section {
-    background: #141B2B;
-    border-radius: 20px;
-    padding: 28px;
-    border: 1px solid #2E3A55;
-    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(15, 23, 42, 0.7);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #475569;
 }
 
 .section-title {
-    color: #00ffff;
-    font-size: 1.4rem;
-    margin-bottom: 22px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #2E3A55;
+    color: #60a5fa;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #475569;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 600;
+    gap: 10px;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
 }
 
-/* فرم ثبت معامله */
 .trade-form {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 25px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 20px;
 }
 
 .form-group {
@@ -662,8 +630,8 @@ h1 {
 }
 
 label {
-    margin-bottom: 10px;
-    color: #9CA3AF;
+    margin-bottom: 8px;
+    color: #cbd5e1;
     font-weight: 600;
     font-size: 0.9rem;
     display: flex;
@@ -672,18 +640,18 @@ label {
 }
 
 input, select {
-    padding: 14px;
-    background: #0D1222;
-    border: 1px solid #2E3A55;
-    border-radius: 12px;
+    padding: 12px;
+    background-color: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 8px;
     font-size: 0.95rem;
-    color: #E5E7EB;
+    color: #f1f5f9;
     transition: all 0.3s;
-    height: 48px;
+    height: 44px;
 }
 
 input[type="text"] {
-    font-family: 'SF Mono', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     font-weight: 600;
     text-align: left;
     direction: ltr;
@@ -692,36 +660,36 @@ input[type="text"] {
 
 input:focus, select:focus {
     outline: none;
-    border-color: #00ffff;
-    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
-/* بخش قیمت‌ها */
 .prices-section {
-    background: #0D1222;
-    border-radius: 16px;
-    padding: 22px;
-    border: 1px solid #2E3A55;
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .prices-title {
-    color: #00ffff;
-    font-size: 1.1rem;
-    margin-bottom: 18px;
+    color: #60a5fa;
+    font-size: 1rem;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 500;
+    gap: 8px;
 }
 
 .prices-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 15px;
 }
 
 .price-display {
-    font-family: 'SF Mono', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     font-weight: 600;
     letter-spacing: 0.5px;
     direction: ltr;
@@ -729,59 +697,70 @@ input:focus, select:focus {
     font-size: 0.95rem;
 }
 
-/* دکمه‌های ریسک سریع */
 .quick-risk-buttons {
     display: flex;
-    gap: 10px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
+/* GLOW EFFECT ADDED - دکمه‌های ریسک سریع با درخشش */
 .quick-risk-btn {
     padding: 8px 12px;
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    border-radius: 8px;
-    color: #9CA3AF;
+    background-color: rgba(71, 85, 105, 0.5);
+    border: 1px solid #475569;
+    border-radius: 6px;
+    color: #e2e8f0;
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.2s;
     flex: 1;
-    min-height: 38px;
+    min-height: 36px;
 }
 
 .quick-risk-btn:hover {
-    background: #2A3655;
-    color: #00ffff;
-    border-color: #00ffff;
+    background-color: #64748b;
+    transform: translateY(-2px);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(100, 116, 139, 0.5);
 }
 
-/* آپلود اسکرین‌شات */
+/* GLOW EFFECT ADDED - آپلود اسکرین‌شات با درخشش */
 .screenshot-upload-input {
     width: 100%;
     padding: 12px;
-    background: #0D1222;
-    border: 1px dashed #2E3A55;
-    border-radius: 12px;
-    color: #9CA3AF;
-    font-size: 0.95rem;
+    background-color: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #f1f5f9;
+    font-size: 0.9rem;
     transition: all 0.3s;
-    height: 48px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     text-align: center;
 }
 
 .screenshot-upload-input:hover {
-    border-color: #00ffff;
-    color: #00ffff;
+    border-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.screenshot-upload-input i {
+    color: #94a3b8;
+}
+
+.screenshot-upload-input span {
+    color: #94a3b8;
 }
 
 .screenshot-preview-container {
-    margin-top: 12px;
+    margin-top: 10px;
     text-align: center;
     display: none;
 }
@@ -792,44 +771,52 @@ input:focus, select:focus {
 
 .screenshot-preview-image {
     max-width: 100%;
-    max-height: 160px;
-    border-radius: 12px;
-    border: 1px solid #00ffff;
-    margin-bottom: 8px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    margin-bottom: 5px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
 .screenshot-remove-link {
-    color: #ff00ff;
+    color: #ef4444;
     cursor: pointer;
     font-size: 0.85rem;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
 }
 
-/* خلاصه ریسک */
+.screenshot-remove-link:hover {
+    text-decoration: underline;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
 .risk-summary-section {
-    background: #0D1222;
-    border-radius: 16px;
-    padding: 22px;
-    border: 1px solid #2E3A55;
-    margin-top: 18px;
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    margin-top: 15px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .risk-summary-title {
-    color: #00ffff;
-    font-size: 1.1rem;
-    margin-bottom: 18px;
+    color: #60a5fa;
+    font-size: 1rem;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 500;
+    gap: 8px;
 }
 
 .risk-summary {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 15px;
 }
 
 .risk-summary-item {
@@ -837,87 +824,97 @@ input:focus, select:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #1E2A45;
-    padding: 18px;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
+    background: rgba(30, 41, 59, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #475569;
 }
 
 .risk-summary-label {
-    color: #9CA3AF;
+    color: #cbd5e1;
     font-size: 0.85rem;
-    margin-bottom: 10px;
-    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .risk-summary-value {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #E5E7EB;
 }
 
 #riskAmount {
-    color: #ff00ff;
+    color: #ef4444;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 #potentialProfit {
-    color: #00ffff;
+    color: #10b981;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
-/* بخش کارمزد */
 .fee-info-box {
-    background: #ff00ff10;
-    border: 1px solid #ff00ff30;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 18px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 15px;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
 .fee-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    color: #ff00ff;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.fee-row span {
+    color: #f59e0b;
 }
 
 .fee-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
-    font-weight: 700;
-    padding-top: 12px;
-    border-top: 1px solid #ff00ff30;
-    margin-top: 12px;
-    color: #ff00ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding-top: 10px;
+    border-top: 1px solid rgba(245, 158, 11, 0.3);
+    margin-top: 10px;
+}
+
+.fee-total span {
+    color: #f59e0b;
 }
 
 #netProfitAmount {
-    color: #00ffff;
-    font-weight: 700;
+    color: #10b981;
+    font-weight: 600;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .fee-info {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #9CA3AF;
-    font-size: 0.85rem;
-    margin-top: 10px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-top: 8px;
 }
 
-/* دکمه‌های عملیات */
 .form-actions {
     display: flex;
-    gap: 15px;
-    margin-top: 15px;
+    gap: 12px;
+    margin-top: 10px;
     justify-content: flex-end;
 }
 
 button {
-    padding: 14px 28px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -925,212 +922,218 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    height: 48px;
-    min-width: 150px;
+    gap: 8px;
+    height: 44px;
+    min-width: 140px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #00ffff, #00a3ff);
-    color: #0A0F1E;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
 }
 
 .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 .btn-secondary {
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    color: #E5E7EB;
+    background-color: #475569;
+    color: #e2e8f0;
 }
 
 .btn-secondary:hover {
-    background: #2A3655;
+    background-color: #64748b;
     transform: translateY(-2px);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(71, 85, 105, 0.3), 0 0 15px rgba(100, 116, 139, 0.3);
 }
 
 .btn-warning {
-    background: linear-gradient(135deg, #ff00ff, #c900c9);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: white;
-    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.2);
 }
 
 .btn-warning:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 0, 255, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3), 0 0 20px rgba(245, 158, 11, 0.4);
 }
 
-/* جدول معاملات */
 .trades-table-container {
     overflow-x: auto;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
-    margin-top: 18px;
-    max-height: 550px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+    margin-top: 15px;
+    max-height: 500px;
     overflow-y: auto;
-    background: #0D1222;
-}
-
-.trades-table-container::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-.trades-table-container::-webkit-scrollbar-track {
-    background: #1E2A45;
-    border-radius: 10px;
-}
-
-.trades-table-container::-webkit-scrollbar-thumb {
-    background: #00ffff;
-    border-radius: 10px;
 }
 
 .trades-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 1100px;
+    min-width: 1000px;
     direction: ltr;
 }
 
 .trades-table th {
-    background: #1E2A45;
-    color: #00ffff;
-    padding: 16px 14px;
+    background: linear-gradient(135deg, #1e40af, #3730a3);
+    color: white;
+    padding: 14px 12px;
     text-align: left;
     font-weight: 600;
-    border-bottom: 2px solid #00ffff30;
+    border-bottom: 2px solid #3b82f6;
     font-size: 0.9rem;
     position: sticky;
     top: 0;
     z-index: 10;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 }
 
 .trades-table td {
-    padding: 14px;
-    border-bottom: 1px solid #2E3A55;
+    padding: 12px;
+    border-bottom: 1px solid #475569;
     font-size: 0.9rem;
     text-align: left;
-    color: #E5E7EB;
 }
 
 .trades-table tr:hover {
-    background: #00ffff10;
+    background-color: rgba(59, 130, 246, 0.1);
 }
 
+/* GLOW EFFECT ADDED - سود و ضرر با درخشش */
 .profit {
-    color: #00ffff;
+    color: #10b981;
     font-weight: 700;
-    background: #00ffff10;
-    padding: 6px 14px;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 5px 10px;
     border-radius: 20px;
     display: inline-block;
-    font-family: 'SF Mono', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 0.85rem;
-    border: 1px solid #00ffff30;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .loss {
-    color: #ff00ff;
+    color: #ef4444;
     font-weight: 700;
-    background: #ff00ff10;
-    padding: 6px 14px;
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 5px 10px;
     border-radius: 20px;
     display: inline-block;
-    font-family: 'SF Mono', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 0.85rem;
-    border: 1px solid #ff00ff30;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
 .neutral {
-    color: #9CA3AF;
+    color: #94a3b8;
     font-weight: 700;
-    background: #1E2A45;
-    padding: 6px 14px;
+    background-color: rgba(148, 163, 184, 0.1);
+    padding: 5px 10px;
     border-radius: 20px;
     display: inline-block;
     font-size: 0.85rem;
-    border: 1px solid #2E3A55;
 }
 
 .crypto-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #00ffff10;
-    padding: 8px 14px;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 6px 12px;
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
-    color: #00ffff;
-    border: 1px solid #00ffff30;
+    color: #10b981;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .crypto-badge i {
-    color: #00ffff;
+    color: #10b981;
 }
 
 .actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    min-width: 130px;
+    min-width: 120px;
 }
 
+/* GLOW EFFECT ADDED - دکمه‌های آیکون دار با درخشش */
 .btn-icon {
-    padding: 10px;
-    border-radius: 50%;
+    padding: 8px 12px;
+    border-radius: 8px;
     font-size: 0.9rem;
     cursor: pointer;
-    border: 1px solid #2E3A55;
+    border: none;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 40px;
-    min-width: 40px;
+    height: 36px;
+    width: 36px;
+    min-width: 36px;
     flex-shrink: 0;
-    background: #1E2A45;
-    color: #9CA3AF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-icon i {
+    font-size: 1rem;
 }
 
 .btn-icon:hover {
     transform: scale(1.1);
-    border-color: #00ffff;
-    color: #00ffff;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px currentColor;
 }
 
 .btn-icon:disabled {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
-/* کارت‌های آمار */
+/* رنگ‌های مختلف برای دکمه‌های آیکون */
+.btn-icon[onclick*="showTradeDetails"]:hover {
+    color: #0ea5e9;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #0ea5e9;
+}
+
+.btn-icon[onclick*="openCloseModal"]:hover {
+    color: #3b82f6;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #3b82f6;
+}
+
+.btn-icon[onclick*="deleteTrade"]:hover {
+    color: #ef4444;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3), 0 0 15px #ef4444;
+}
+
 .stats-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-top: 18px;
+    gap: 15px;
+    margin-top: 15px;
 }
 
+/* GLOW EFFECT ADDED - کارت‌های آمار با درخشش */
 .stat-card {
-    background: linear-gradient(145deg, #1E2A45, #141F36);
-    border-radius: 16px;
-    padding: 18px;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+    border-radius: 10px;
+    padding: 16px;
     text-align: center;
-    border: 1px solid #2E3A55;
-    min-height: 100px;
+    border: 1px solid #475569;
+    min-height: 95px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
@@ -1142,364 +1145,369 @@ button {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    opacity: 0.7;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px #3b82f6;
 }
 
 .stat-card:hover {
     transform: translateY(-3px);
-    border-color: #00ffff;
-    box-shadow: 0 10px 20px -5px rgba(0, 255, 255, 0.2);
+    border-color: #60a5fa;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 25px rgba(96, 165, 250, 0.3);
 }
 
 .stat-icon {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    color: #00ffff;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    opacity: 0.7;
+    color: #94a3b8;
 }
 
 .stat-label {
-    color: #9CA3AF;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
     font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .stat-value {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 800;
     margin: 5px 0;
-    font-family: 'Inter', 'SF Mono', monospace;
-    color: #E5E7EB;
+    font-family: 'Segoe UI', 'Courier New', monospace;
+    letter-spacing: 0.5px;
 }
 
 .positive {
-    color: #00ffff;
-    background: #00ffff10;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #00ffff30;
+    color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .negative {
-    color: #ff00ff;
-    background: #ff00ff10;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #ff00ff30;
+    color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
 .neutral-stat {
-    color: #9CA3AF;
-    background: #1E2A45;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #2E3A55;
+    color: #94a3b8;
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(148, 163, 184, 0.05));
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .fee-stat {
-    color: #ffaa00;
-    background: #ffaa0010;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid #ffaa0030;
+    color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
 }
 
-/* بخش پشتیبان‌گیری */
 .backup-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-    margin-top: 18px;
+    gap: 20px;
+    margin-top: 15px;
 }
 
+/* GLOW EFFECT ADDED - کارت‌های پشتیبان با درخشش */
 .backup-card {
-    background: linear-gradient(145deg, #1E2A45, #141F36);
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid #2E3A55;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    padding: 22px;
+    border-radius: 10px;
+    border: 1px solid #475569;
     display: flex;
     flex-direction: column;
     transition: all 0.3s;
 }
 
 .backup-card:hover {
-    border-color: #00ffff;
-    box-shadow: 0 10px 20px -5px rgba(0, 255, 255, 0.2);
+    border-color: #10b981;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 25px rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
 }
 
 .backup-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-    color: #00ffff;
-    font-size: 1.2rem;
-    font-weight: 600;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: #60a5fa;
+    font-size: 1.05rem;
 }
 
 .backup-description {
-    color: #9CA3AF;
-    margin-bottom: 22px;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5;
     flex-grow: 1;
 }
 
+/* GLOW EFFECT ADDED - دکمه پشتیبان با درخشش */
 .btn-backup {
-    background: linear-gradient(135deg, #00ffff, #00a3ff);
-    color: #0A0F1E;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
     width: 100%;
-    font-weight: 700;
 }
 
 .btn-backup:hover {
+    background: linear-gradient(135deg, #059669, #047857);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
 .file-input {
     width: 100%;
-    padding: 14px;
-    background: #0D1222;
-    border: 1px solid #2E3A55;
-    border-radius: 12px;
-    color: #E5E7EB;
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-}
-
-.file-input::file-selector-button {
-    background: #00ffff20;
-    border: 1px solid #00ffff40;
-    color: #00ffff;
-    padding: 6px 14px;
+    padding: 12px;
+    background-color: #1e293b;
+    border: 1px solid #475569;
     border-radius: 8px;
-    margin-right: 12px;
-    cursor: pointer;
+    color: #f1f5f9;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
 }
 
-.file-input::file-selector-button:hover {
-    background: #00ffff30;
+.file-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
-/* داشبورد ماهانه */
 .dashboard-section {
-    background: #141B2B;
-    border-radius: 20px;
-    padding: 28px;
-    border: 1px solid #2E3A55;
+    background-color: rgba(15, 23, 42, 0.7);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #475569;
 }
 
 .dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #2E3A55;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #475569;
 }
 
 .dashboard-title {
-    color: #00ffff;
-    font-size: 1.4rem;
+    color: #60a5fa;
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 600;
+    gap: 10px;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
 }
 
 .month-selector {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
 }
 
+/* GLOW EFFECT ADDED - دکمه‌های ماه با درخشش */
 .month-btn {
-    background: #1E2A45;
-    border: 1px solid #2E3A55;
-    color: #00ffff;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
-    min-width: 40px;
-    font-size: 1.1rem;
+    min-width: 36px;
 }
 
 .month-btn:hover:not(:disabled) {
-    border-color: #00ffff;
+    background: rgba(59, 130, 246, 0.2);
     transform: translateY(-2px);
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.6);
 }
 
 .month-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
 .current-month {
-    background: #00ffff20;
-    color: #00ffff;
-    padding: 10px 24px;
-    border-radius: 30px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
     font-weight: 600;
-    font-size: 1rem;
-    border: 1px solid #00ffff40;
+    font-size: 0.95rem;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .dashboard-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 28px;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .dashboard-stat-card {
-    background: linear-gradient(145deg, #1E2A45, #141F36);
-    border-radius: 14px;
-    padding: 18px;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+    border-radius: 10px;
+    padding: 16px;
     text-align: center;
-    border: 1px solid #2E3A55;
+    border: 1px solid #475569;
+    transition: all 0.3s;
+}
+
+.dashboard-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #60a5fa;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(96, 165, 250, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .dashboard-stat-label {
-    color: #9CA3AF;
+    color: #94a3b8;
     font-size: 0.85rem;
-    margin-bottom: 10px;
-    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .dashboard-stat-value {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #E5E7EB;
 }
 
 #monthlyTotalPnL {
-    color: #00ffff;
+    color: #94a3b8;
 }
 
 #monthlyProfitable {
-    color: #00ffff;
+    color: #10b981;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 #monthlyLoss {
-    color: #ff00ff;
+    color: #ef4444;
+    /* GLOW EFFECT ADDED */
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
 }
 
 .monthly-trades-container {
-    max-height: 450px;
+    max-height: 400px;
     overflow-y: auto;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
-    background: #0D1222;
+    border-radius: 8px;
+    border: 1px solid #475569;
 }
 
 .monthly-trades-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 1100px;
+    min-width: 1000px;
     direction: ltr;
 }
 
 .monthly-trades-table th {
-    background: #1E2A45;
-    color: #00ffff;
-    padding: 16px 14px;
+    background: linear-gradient(135deg, #1e40af, #3730a3);
+    color: white;
+    padding: 14px 12px;
     text-align: left;
     font-weight: 600;
-    border-bottom: 2px solid #00ffff30;
+    border-bottom: 2px solid #3b82f6;
     font-size: 0.9rem;
     position: sticky;
     top: 0;
+    /* GLOW EFFECT ADDED */
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 }
 
 .monthly-trades-table td {
-    padding: 14px;
-    border-bottom: 1px solid #2E3A55;
+    padding: 12px;
+    border-bottom: 1px solid #475569;
     font-size: 0.9rem;
     text-align: left;
-    color: #E5E7EB;
 }
 
 .monthly-trades-table tr:hover {
-    background: #00ffff10;
+    background-color: rgba(59, 130, 246, 0.1);
     cursor: pointer;
 }
 
 .no-trades-month {
     text-align: center;
-    padding: 50px;
-    color: #9CA3AF;
+    padding: 40px;
+    color: #94a3b8;
 }
 
-/* مودال‌ها */
+/* GLOW EFFECT ADDED - مودال‌ها با درخشش */
 .details-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     z-index: 9999;
     display: none;
-    animation: fadeIn 0.3s;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
     overflow-y: auto;
     padding: 20px;
 }
 
 .details-modal-content {
-    max-width: 650px;
-    animation: slideUp 0.4s;
+    max-width: 600px;
+    animation: modalSlideUp 0.4s ease-out;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
     margin-top: 50px;
-    background: #141B2B;
-    padding: 32px;
-    border-radius: 24px;
-    border: 1px solid #00ffff30;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #475569;
     width: 90%;
-    box-shadow: 0 25px 50px -12px rgba(0, 255, 255, 0.2);
-}
-
-.details-modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.details-modal-content::-webkit-scrollbar-track {
-    background: #1E2A45;
-    border-radius: 10px;
-}
-
-.details-modal-content::-webkit-scrollbar-thumb {
-    background: #00ffff;
-    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.2);
 }
 
 .details-modal-content h3 {
-    color: #00ffff;
-    margin-bottom: 22px;
+    color: #60a5fa;
+    margin-bottom: 20px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    font-size: 1.5rem;
+    gap: 10px;
+    text-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
 }
 
 .details-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-top: 22px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .detail-item {
@@ -1509,49 +1517,50 @@ button {
 }
 
 .detail-label {
-    color: #9CA3AF;
+    color: #94a3b8;
     font-size: 0.85rem;
-    margin-bottom: 6px;
-    font-weight: 500;
+    margin-bottom: 4px;
 }
 
 .detail-value {
-    color: #E5E7EB;
+    color: #f1f5f9;
     font-weight: 600;
-    font-size: 0.95rem;
-    padding: 12px;
-    background: #0D1222;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
+    font-size: 0.9rem;
+    padding: 10px;
+    background-color: rgba(30, 41, 59, 0.5);
+    border-radius: 6px;
+    border: 1px solid #475569;
 }
 
 .detail-value.price {
-    font-family: 'SF Mono', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     direction: ltr;
     text-align: right;
 }
 
 #detail-risk-amount {
-    color: #ff00ff;
+    color: #ef4444;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .detail-section {
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid #2E3A55;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #475569;
 }
 
 .detail-section-title {
-    color: #00ffff;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    color: #60a5fa;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 #detail-fee-entry, #detail-fee-exit, #detail-total-fee {
-    color: #ffaa00;
+    color: #f59e0b;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); /* GLOW EFFECT ADDED */
 }
 
 #detail-total-fee {
@@ -1561,52 +1570,56 @@ button {
 .screenshot-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-top: 15px;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .screenshot-item {
-    background: #0D1222;
-    border-radius: 12px;
-    padding: 15px;
-    border: 1px solid #2E3A55;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #475569;
 }
 
 .screenshot-item h4 {
-    color: #9CA3AF;
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#detail-screenshot-entry-container, #detail-screenshot-exit-container {
     text-align: center;
 }
 
 .screenshot-image {
     max-width: 100%;
-    max-height: 160px;
-    border-radius: 8px;
+    max-height: 150px;
+    border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s;
-    border: 1px solid #2E3A55;
+    border: 1px solid #475569;
 }
 
 .screenshot-image:hover {
-    transform: scale(1.03);
-    border-color: #00ffff;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .no-screenshot {
-    color: #6B7280;
-    font-size: 0.9rem;
+    color: #64748b;
+    font-size: 0.85rem;
     text-align: center;
-    padding: 25px;
-    background: #0D1222;
-    border-radius: 8px;
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.3);
+    border-radius: 6px;
     font-style: italic;
 }
 
 .details-modal-buttons {
     display: flex;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 @keyframes fadeIn {
@@ -1614,7 +1627,7 @@ button {
     to { opacity: 1; }
 }
 
-@keyframes slideUp {
+@keyframes modalSlideUp {
     from {
         transform: translateY(50px);
         opacity: 0;
@@ -1625,80 +1638,78 @@ button {
     }
 }
 
-/* مودال بستن معامله */
 .close-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10000;
     display: none;
+    backdrop-filter: blur(5px);
 }
 
 .close-modal-content {
-    max-width: 450px;
-    background: #141B2B;
-    padding: 32px;
-    border-radius: 24px;
-    border: 1px solid #ff00ff30;
+    max-width: 400px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #475569;
     width: 90%;
-    box-shadow: 0 25px 50px -12px rgba(255, 0, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(239, 68, 68, 0.2), 0 0 30px rgba(239, 68, 68, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .close-modal-content h3 {
-    color: #ff00ff;
-    margin-bottom: 22px;
+    color: #60a5fa;
+    margin-bottom: 20px;
     text-align: center;
-    font-size: 1.3rem;
+    text-shadow: 0 0 15px rgba(96, 165, 250, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .close-preview {
     max-width: 100%;
-    max-height: 220px;
-    border-radius: 12px;
-    margin: 18px 0;
+    max-height: 200px;
+    border-radius: 8px;
+    margin: 15px 0;
     display: none;
 }
 
 .close-preview.active {
     display: block;
-    margin: 18px auto 0;
+    margin: 15px auto 0;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .screenshot-remove-wrapper {
-    margin-top: 18px;
+    margin-top: 15px;
     text-align: left;
 }
 
 .screenshot-remove {
-    color: #ff00ff;
+    color: #ef4444;
     cursor: pointer;
     display: none;
 }
 
 .screenshot-remove:hover {
-    color: #ff69b4;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); /* GLOW EFFECT ADDED */
 }
 
 .screenshot-remove.active {
     display: inline;
 }
 
-/* مودال تصویر */
 .image-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(15px);
+    background-color: rgba(0, 0, 0, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1715,79 +1726,83 @@ button {
 .image-modal-content img {
     max-width: 100%;
     max-height: 90vh;
-    border-radius: 16px;
-    border: 2px solid #00ffff;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    border: 2px solid #475569;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .image-modal-close {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 20px;
+    right: 20px;
     color: white;
-    font-size: 2.2rem;
+    font-size: 2rem;
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #00ffff;
+    transition: all 0.3s;
 }
 
 .image-modal-close:hover {
-    background: #ff00ff;
-    border-color: #ff00ff;
+    background: rgba(239, 68, 68, 0.8);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); /* GLOW EFFECT ADDED */
 }
 
-/* پیشرفت بارگذاری */
 .backup-progress {
-    margin-top: 22px;
-    padding: 18px;
-    background: #0D1222;
-    border-radius: 12px;
-    border: 1px solid #2E3A55;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 8px;
+    border: 1px solid #475569;
     display: none;
 }
 
 .backup-progress.active {
     display: block;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); /* GLOW EFFECT ADDED */
 }
 
 .progress-bar-container {
     width: 100%;
     height: 8px;
-    background: #1E2A45;
+    background: #334155;
     border-radius: 4px;
     overflow: hidden;
-    margin: 12px 0;
+    margin: 10px 0;
 }
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     width: 0%;
-    transition: width 0.3s;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 0 0 15px #3b82f6; /* GLOW EFFECT ADDED */
 }
 
 .progress-text {
-    color: #9CA3AF;
-    font-size: 0.95rem;
-    margin-top: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-top: 8px;
     text-align: center;
 }
 
 .backup-status {
-    color: #00ffff;
+    color: #10b981;
     font-weight: 600;
-    margin-top: 12px;
+    margin-top: 10px;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); /* GLOW EFFECT ADDED */
 }
 
 .cancel-import-container {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 #cancelImportBtn {
@@ -1796,27 +1811,37 @@ button {
     margin: 0 auto;
 }
 
-/* فوتر */
+/* GLOW EFFECT ADDED - فوتر با درخشش ملایم */
 footer {
     text-align: center;
-    margin-top: 45px;
-    padding-top: 22px;
-    border-top: 1px solid #2E3A55;
-    color: #9CA3AF;
-    font-size: 0.9rem;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #475569;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    position: relative;
+}
+
+footer::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 30%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3b82f6, #8b5cf6, #3b82f6, transparent);
+    box-shadow: 0 0 15px #3b82f6;
 }
 
 #noTradesMessage {
     text-align: center;
-    padding: 40px;
-    color: #9CA3AF;
+    padding: 30px;
+    color: #94a3b8;
     display: none;
-    font-size: 1rem;
 }
 
 #noTradesMessage i {
-    font-size: 2.2rem;
-    margin-bottom: 18px;
+    font-size: 2rem;
+    margin-bottom: 15px;
     display: block;
-    color: #2E3A55;
 }
