@@ -49,7 +49,7 @@ body {
     }
 }
 
-/* هدر با خط نئونی شبیه نوار قلب (چارت ارز دیجیتال) */
+/* هدر با خط نئونی شبیه نوار قلب */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -62,86 +62,116 @@ header {
     align-items: center;
 }
 
-/* خط نئونی بزرگتر با افکت نوار قلب */
+/* خط نئونی با افکت نوار قلب */
 header::after {
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 10%;  /* پهنتر شده */
-    width: 80%;  /* پهنتر شده */
-    height: 4px;
+    left: 5%;
+    width: 90%;
+    height: 6px;
     background: linear-gradient(90deg, 
-        #00ffff, #ff00ff, #00ffff, #ff00ff, #00ffff, #ff00ff, #00ffff);
-    border-radius: 4px;
-    filter: blur(1px);
-    /* انیمیشن نوار قلب */
-    animation: ekgLine 2s ease-in-out infinite;
+        #00ffff, #ff00ff, #00ffff, #ff00ff, #00ffff, #ff00ff, #00ffff
+    );
+    border-radius: 3px;
+    filter: blur(2px);
+    animation: heartbeatLine 2.5s ease-in-out infinite;
     box-shadow: 
         0 0 15px #00ffff,
         0 0 30px #ff00ff;
-    /* ایجاد ظاهر ناهموار مثل نوار قلب */
-    clip-path: polygon(
-        0% 45%, 5% 45%, 8% 20%, 11% 70%, 14% 30%, 17% 55%, 20% 40%,
-        23% 65%, 26% 35%, 29% 50%, 32% 45%, 35% 80%, 38% 25%, 41% 60%,
-        44% 40%, 47% 55%, 50% 30%, 53% 70%, 56% 45%, 59% 50%, 62% 35%,
-        65% 65%, 68% 40%, 71% 55%, 74% 30%, 77% 70%, 80% 45%, 83% 50%,
-        86% 40%, 89% 60%, 92% 35%, 95% 55%, 98% 45%, 100% 45%
-    );
-    background-size: 200% 100%;
-    background-position: 0% 0%;
 }
 
-/* انیمیشن شبیه نوار قلب (حرکت و نوسان) */
-@keyframes ekgLine {
+/* انیمیشن نوار قلب با پیک‌های تند */
+@keyframes heartbeatLine {
     0% {
+        height: 4px;
+        opacity: 0.7;
+        filter: blur(1px);
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    }
+    10% {
+        height: 20px;  /* پیک بلند */
+        opacity: 1;
+        filter: blur(3px);
+        box-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff, 0 0 90px #00ffff;
+    }
+    12% {
+        height: 4px;  /* افت ناگهانی */
         opacity: 0.8;
-        box-shadow: 
-            0 0 15px #00ffff,
-            0 0 30px #ff00ff;
-        background-position: 0% 0%;
+        filter: blur(1px);
+        box-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;
+    }
+    20% {
+        height: 6px;
+        opacity: 0.8;
     }
     25% {
+        height: 15px;  /* پیک دوم */
         opacity: 1;
-        box-shadow: 
-            0 0 25px #00ffff,
-            0 0 50px #ff00ff,
-            0 0 80px #00ffff;
-        background-position: 50% 0%;
+        filter: blur(2.5px);
+        box-shadow: 0 0 25px #ff00ff, 0 0 50px #00ffff, 0 0 75px #ff00ff;
+    }
+    27% {
+        height: 4px;
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+    35% {
+        height: 5px;
+    }
+    40% {
+        height: 18px;  /* پیک سوم */
+        opacity: 1;
+        filter: blur(3px);
+        box-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff;
+    }
+    42% {
+        height: 4px;
     }
     50% {
+        height: 4px;
+    }
+    55% {
+        height: 12px;  /* پیک چهارم */
         opacity: 0.9;
-        box-shadow: 
-            0 0 20px #00ffff,
-            0 0 40px #ff00ff;
-        background-position: 100% 0%;
+        filter: blur(2px);
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
     }
-    75% {
+    57% {
+        height: 4px;
+    }
+    65% {
+        height: 5px;
+    }
+    70% {
+        height: 25px;  /* بزرگترین پیک */
         opacity: 1;
-        box-shadow: 
-            0 0 25px #ff00ff,
-            0 0 50px #00ffff,
-            0 0 80px #ff00ff;
-        background-position: 150% 0%;
+        filter: blur(4px);
+        box-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff, 0 0 120px #00ffff;
+    }
+    72% {
+        height: 4px;
+    }
+    80% {
+        height: 4px;
+    }
+    85% {
+        height: 16px;  /* پیک آخر */
+        opacity: 1;
+        filter: blur(3px);
+        box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
+    }
+    87% {
+        height: 4px;
+    }
+    95% {
+        height: 5px;
     }
     100% {
-        opacity: 0.8;
-        box-shadow: 
-            0 0 15px #00ffff,
-            0 0 30px #ff00ff;
-        background-position: 200% 0%;
-    }
-}
-
-/* انیمیشن ساده‌تر دو مرحله‌ای (اگه خواستی جایگزین کنی) */
-@keyframes simpleEkg {
-    0% {
+        height: 4px;
         opacity: 0.7;
-        transform: scaleY(1);
-    }
-    100% {
-        opacity: 1;
-        transform: scaleY(1.2);
-        filter: blur(1.5px);
+        filter: blur(1px);
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
     }
 }
 
