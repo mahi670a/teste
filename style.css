@@ -1,7 +1,7 @@
-/* =====================================================
-   CRYPTO JOURNAL - PRO DASHBOARD V2
-   Clean • Professional • Minimal • Trading Focused
-===================================================== */
+/* ==============================
+   CRYPTO JOURNAL - CLEAN PRO UI
+   Safe Version For Your HTML
+============================== */
 
 * {
     margin: 0;
@@ -10,11 +10,10 @@
 }
 
 body {
-    background: #0b1120;
-    color: #e2e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    min-height: 100vh;
-    padding: 40px 20px;
+    background: #0b1120;
+    color: #e5e7eb;
+    line-height: 1.6;
 }
 
 /* ================= CONTAINER ================= */
@@ -22,132 +21,213 @@ body {
 .container {
     max-width: 1400px;
     margin: auto;
-    background: #111827;
-    border-radius: 16px;
-    padding: 30px;
-    border: 1px solid #1f2937;
+    padding: 25px;
 }
 
 /* ================= HEADER ================= */
 
 header {
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #1f2937;
+    margin-bottom: 30px;
 }
 
-h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    text-align: center;
+}
+
+.header-title h1 {
+    font-size: 1.6rem;
     color: #60a5fa;
 }
 
 .subtitle {
-    color: #64748b;
-    margin-top: 6px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
 }
 
-/* ================= BALANCE ================= */
-
-.balance-container {
-    background: #0f172a;
-    border-radius: 14px;
-    padding: 25px;
-    border: 1px solid #1f2937;
-    margin-bottom: 30px;
-}
-
-.balance-title {
-    color: #64748b;
-    font-size: 0.85rem;
-}
-
-.balance-value {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-top: 6px;
-}
-
-#totalPnL {
-    font-weight: 700;
+.calculator-btn {
+    background: #1f2937;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /* ================= SECTIONS ================= */
 
 .section,
 .dashboard-section {
-    background: #0f172a;
+    background: #111827;
     border-radius: 14px;
-    padding: 25px;
-    border: 1px solid #1f2937;
+    padding: 22px;
     margin-bottom: 25px;
+    border: 1px solid #1f2937;
 }
 
 .section-title,
 .dashboard-title {
+    margin-bottom: 18px;
     font-size: 1.1rem;
-    font-weight: 600;
     color: #60a5fa;
-    margin-bottom: 20px;
+}
+
+/* ================= BALANCE ================= */
+
+.balance-container {
+    background: #111827;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    margin-bottom: 25px;
+}
+
+.balance-main {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.balance-icon {
+    font-size: 1.5rem;
+    color: #3b82f6;
+}
+
+.balance-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.balance-details {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.balance-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.balance-btn {
+    background: #1f2937;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
 }
 
 /* ================= FORM ================= */
 
-input,
-select,
-textarea {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 10px;
-    padding: 10px;
-    color: #e2e8f0;
-    font-size: 0.9rem;
+.trade-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #3b82f6;
-    outline: none;
+.form-grid,
+.prices-grid,
+.details-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.form-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.prices-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #94a3b8;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #1f2937;
+    background: #0f172a;
+    color: white;
 }
 
 /* ================= BUTTONS ================= */
 
 button {
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-weight: 600;
     cursor: pointer;
-    border: none;
     transition: 0.2s ease;
 }
 
-.btn-primary,
-.modal-btn-primary {
+.btn-primary {
     background: #2563eb;
     color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
 }
 
-.btn-primary:hover,
-.modal-btn-primary:hover {
-    background: #1d4ed8;
-}
-
-.btn-secondary,
-.modal-btn-secondary {
-    background: #334155;
+.btn-secondary {
+    background: #374151;
     color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
 }
 
 .btn-warning {
     background: #d97706;
     color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
 }
 
-.modal-btn-success {
-    background: #16a34a;
-    color: white;
+.form-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ================= TABLE ================= */
+
+.trades-table-container,
+.monthly-trades-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #1e293b;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #1f2937;
+    font-size: 0.85rem;
+}
+
+tr:hover {
+    background: #1e293b;
 }
 
 /* ================= STATS ================= */
@@ -155,109 +235,56 @@ button {
 .stats-container,
 .dashboard-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 
 .stat-card,
 .dashboard-stat-card {
-    background: #111827;
-    border: 1px solid #1f2937;
+    background: #0f172a;
+    padding: 15px;
     border-radius: 12px;
-    padding: 16px;
-    transition: 0.2s;
-}
-
-.stat-card:hover {
-    border-color: #3b82f6;
+    border: 1px solid #1f2937;
+    text-align: center;
 }
 
 .stat-label,
 .dashboard-stat-label {
-    color: #64748b;
     font-size: 0.8rem;
+    color: #94a3b8;
 }
 
 .stat-value,
 .dashboard-stat-value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-top: 6px;
 }
 
-/* ================= TABLE ================= */
-
-.trades-table-container,
-.monthly-trades-container {
-    border: 1px solid #1f2937;
-    border-radius: 12px;
-    overflow: auto;
-}
-
-.trades-table,
-.monthly-trades-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.trades-table th,
-.monthly-trades-table th {
-    background: #1e293b;
-    padding: 12px;
-    text-align: left;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.trades-table td,
-.monthly-trades-table td {
-    padding: 12px;
-    border-bottom: 1px solid #1f2937;
-    font-size: 0.85rem;
-}
-
-.trades-table tr:hover,
-.monthly-trades-table tr:hover {
-    background: #1e293b;
-}
-
-/* ================= PROFIT / LOSS ================= */
-
-.profit {
-    color: #22c55e;
-    font-weight: 700;
-}
-
-.loss {
-    color: #ef4444;
-    font-weight: 700;
-}
-
-.neutral {
-    color: #94a3b8;
-}
-
-/* ================= MODAL ================= */
+/* ================= MODALS ================= */
 
 .details-modal,
 .close-modal,
 .image-modal {
-    background: rgba(0,0,0,0.85);
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
 .details-modal-content,
-.close-modal-content {
-    background: #0f172a;
-    border: 1px solid #1f2937;
-    border-radius: 16px;
-}
-
-/* ================= BACKUP ================= */
-
-.backup-card {
+.close-modal-content,
+.modal-box {
     background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 14px;
+    width: 95%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 /* ================= FOOTER ================= */
@@ -267,4 +294,17 @@ footer {
     text-align: center;
     color: #64748b;
     font-size: 0.8rem;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+    .balance-details {
+        flex-direction: column;
+    }
+
+    .header-top {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
