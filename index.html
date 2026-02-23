@@ -300,8 +300,8 @@
         <div class="main-wrapper">
             <!-- کانتینر اصلی -->
             <div class="container">
-                <!-- بخش بالانس حساب (همیشه نمایش داده می‌شود) -->
-                <div class="balance-container">
+                <!-- بالانس حساب - فقط در فرم ثبت معامله نمایش داده می‌شود -->
+                <div id="balanceSection" class="balance-container">
                     <div class="balance-main">
                         <div class="balance-icon">
                             <i class="fas fa-wallet"></i>
@@ -428,12 +428,6 @@
                     <!-- بخش ثبت معامله (پیش‌فرض فعال) -->
                     <section id="trade-form-section" class="section active-section">
                         <h2 class="section-title"><i class="fas fa-plus-circle"></i> ثبت معامله جدید</h2>
-                        
-                        <!-- معاملات باز -->
-                        <div class="open-trades-container">
-                            <h3 class="open-trades-title"><i class="fas fa-clock"></i> معاملات باز</h3>
-                            <div id="openTradesList" class="open-trades-list"></div>
-                        </div>
                         
                         <form id="tradeForm" class="trade-form">
                             <div class="form-grid">
@@ -580,6 +574,12 @@
                                 </button>
                             </div>
                         </form>
+                        
+                        <!-- معاملات باز - بعد از فرم ثبت معامله -->
+                        <div class="open-trades-container">
+                            <h3 class="open-trades-title"><i class="fas fa-clock"></i> معاملات باز</h3>
+                            <div id="openTradesList" class="open-trades-list"></div>
+                        </div>
                     </section>
                     
                     <!-- بخش تاریخچه معاملات (مخفی در ابتدا) -->
@@ -613,10 +613,8 @@
                     
                     <!-- بخش داشبورد ماهانه (مخفی در ابتدا) -->
                     <section id="dashboard-section" class="dashboard-section">
+                        <h2 class="section-title"><i class="fas fa-chart-pie"></i> داشبورد ماهانه</h2>
                         <div class="dashboard-header">
-                            <h2 class="dashboard-title">
-                                <i class="fas fa-chart-pie"></i> داشبورد ماهانه
-                            </h2>
                             <div class="month-selector">
                                 <button class="month-btn" onclick="changeMonth(-1)" id="prevMonthBtn" title="ماه قبل">
                                     <i class="fas fa-chevron-right"></i>
