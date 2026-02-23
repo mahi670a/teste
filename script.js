@@ -527,6 +527,16 @@ function switchSection(sectionId) {
         activeBtn.classList.add('active');
     }
     
+    // نمایش یا مخفی کردن بالانس بر اساس بخش
+    const balanceSection = document.getElementById('balanceSection');
+    if (balanceSection) {
+        if (sectionId === 'trade-form') {
+            balanceSection.style.display = 'flex';
+        } else {
+            balanceSection.style.display = 'none';
+        }
+    }
+    
     if (sectionId === 'stats') {
         updateStats();
     }
