@@ -147,6 +147,7 @@ function getMimeType(fileName) {
 // ============================
 let isImportCancelled = false;
 let importStartTime = 0;
+let accountGrowthChart = null;
 
 // ============================
 // کلاس مدیریت IndexedDB - ذخیره‌سازی نامحدود
@@ -489,6 +490,7 @@ let accounts = [];
 let activeAccountId = 1;
 let activeAccount = null;
 let accountBalance = 0;
+let initialAccountBalance = 0;
 let trades = [];
 
 let currentYear = null;
@@ -539,6 +541,8 @@ function switchSection(sectionId) {
     
     if (sectionId === 'stats') {
         updateStats();
+        updateDetailedStats();
+        updateGrowthChart();
     }
     
     if (sectionId === 'dashboard') {
@@ -554,6 +558,148 @@ function switchSection(sectionId) {
     }
     
     closeAllModals();
+}
+
+// ============================
+// تابع به‌روزرسانی آمار تفصیلی
+// ============================
+function updateDetailedStats() {
+    // موجودی اولیه
+    document.getElementById('initialBalance').textContent = formatCurrency(initialAccountBalance);
+    
+    // موجودی فعلی
+    document.getElementById('currentBalanceStats').textContent = formatCurrency(accountBalance);
+    
+    // سود و ضرر کل
+    const totalPnL = calculateTotalPnL();
+    const totalPnLElement = document.getElementById('totalPnLStats');
+    totalPnLElement.textContent = (totalPnL >= 0 ? '+' : '') + formatCurrency(Math.abs(totalPnL));
+    totalPnLElement.style.color = totalPnL >= 0 ? '#10b981' : '#ef4444';
+    
+    // درصد سود
+    const profitPercentage = initialAccountBalance > 0 ? ((accountBalance - initialAccountBalance) / initialAccountBalance) * 100 : 0;
+    document.getElementById('profitPercentage').textContent = profitPercentage.toFixed(2) + '%';
+    document.getElementById('profitPercentage').style.color = profitPercentage >= 0 ? '#10b981' : '#ef4444';
+    
+    // سود خالص
+    const totalProfit = calculateTotalProfit();
+    document.getElementById('netProfit').textContent = formatCurrency(totalProfit);
+    
+    // ضرر خالص
+    const totalLoss = calculateTotalLoss();
+    document.getElementById('netLoss').textContent = formatCurrency(totalLoss);
+    
+    // تعداد کل معاملات
+    document.getElementById('totalTradesStats').textContent = trades.length;
+    
+    // تعداد معاملات لانگ و شورت
+    const longTrades = trades.filter(t => t.type === 'buy').length;
+    const shortTrades = trades.filter(t => t.type === 'sell').length;
+    document.getElementById('longTradesCount').textContent = longTrades;
+    document.getElementById('shortTradesCount').textContent = shortTrades;
+}
+
+// ============================
+// تابع به‌روزرسانی نمودار رشد حساب
+// ============================
+function updateGrowthChart() {
+    const ctx = document.getElementById('accountGrowthChart').getContext('2d');
+    
+    // مرتب‌سازی معاملات بر اساس تاریخ
+    const sortedTrades = [...trades]
+        .filter(t => t.status === 'closed')
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // محاسبه رشد حساب
+    let balance = initialAccountBalance;
+    const balanceHistory = [balance];
+    const tradeNumbers = [0];
+    
+    sortedTrades.forEach((trade, index) => {
+        const pnl = calculateTradePnL(trade);
+        balance += pnl;
+        balanceHistory.push(balance);
+        tradeNumbers.push(index + 1);
+    });
+    
+    // اگر معامله‌ای وجود نداشت
+    if (sortedTrades.length === 0) {
+        balanceHistory.push(initialAccountBalance);
+        tradeNumbers.push(1);
+    }
+    
+    // نابود کردن نمودار قبلی اگر وجود دارد
+    if (accountGrowthChart) {
+        accountGrowthChart.destroy();
+    }
+    
+    // ایجاد نمودار جدید
+    accountGrowthChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: tradeNumbers,
+            datasets: [{
+                label: 'رشد حساب ($)',
+                data: balanceHistory,
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderWidth: 3,
+                pointBackgroundColor: '#60a5fa',
+                pointBorderColor: '#1e293b',
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    titleColor: '#f1f5f9',
+                    bodyColor: '#94a3b8',
+                    borderColor: '#3b82f6',
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(71, 85, 105, 0.2)'
+                    },
+                    ticks: {
+                        color: '#94a3b8'
+                    },
+                    title: {
+                        display: true,
+                        text: 'تعداد معاملات',
+                        color: '#cbd5e1'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(71, 85, 105, 0.2)'
+                    },
+                    ticks: {
+                        color: '#94a3b8',
+                        callback: function(value) {
+                            return '$' + value;
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'رشد سرمایه ($)',
+                        color: '#cbd5e1'
+                    }
+                }
+            }
+        }
+    });
 }
 
 // ============================
@@ -630,12 +776,18 @@ async function initialize() {
         updateBalanceDisplay();
         updateTotalRisk();
         updateStats();
+        updateDetailedStats();
         
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
         switchSection('trade-form');
         loadOpenTrades();
+        
+        // مقداردهی اولیه نمودار
+        setTimeout(() => {
+            updateGrowthChart();
+        }, 500);
         
         console.log('✅ برنامه با موفقیت راه‌اندازی شد');
     } catch (error) {
@@ -686,6 +838,7 @@ async function loadAccountsFromDB() {
         activeAccountId = savedActiveId ? parseInt(savedActiveId) : 1;
         activeAccount = accounts.find(acc => acc.id === activeAccountId) || accounts[0];
         accountBalance = activeAccount ? activeAccount.balance : 0;
+        initialAccountBalance = accountBalance; // ذخیره موجودی اولیه
         
         updateAccountsList();
         
@@ -697,6 +850,7 @@ async function loadAccountsFromDB() {
         activeAccountId = 1;
         activeAccount = accounts[0];
         accountBalance = 0;
+        initialAccountBalance = 0;
         updateAccountsList();
     }
 }
@@ -937,6 +1091,7 @@ async function updateBalance() {
         accounts[activeAccountIndex].balance = newBalance;
         activeAccount = accounts[activeAccountIndex];
         accountBalance = newBalance;
+        initialAccountBalance = newBalance; // به‌روزرسانی موجودی اولیه
         
         await saveAccountsToDB();
     }
@@ -944,6 +1099,8 @@ async function updateBalance() {
     updateBalanceDisplay();
     updateTotalRisk();
     updateStats();
+    updateDetailedStats();
+    updateGrowthChart();
     calculateRisk();
     closeAllModals();
     showNotification('بالانس حساب به‌روزرسانی شد.', 'success');
@@ -1124,8 +1281,10 @@ document.getElementById('tradeForm').addEventListener('submit', async function(e
     
     loadTrades();
     updateStats();
+    updateDetailedStats();
     updateTotalRisk();
     loadOpenTrades();
+    updateGrowthChart();
     
     setInitialMonthBasedOnLastTrade();
     updateMonthlyDashboard();
@@ -1371,9 +1530,11 @@ async function confirmCloseTrade() {
         
         loadTrades();
         updateStats();
+        updateDetailedStats();
         updateTotalRisk();
         updateMonthlyDashboard();
         loadOpenTrades();
+        updateGrowthChart();
         
         closeCloseModal();
         
@@ -1515,8 +1676,10 @@ async function deleteTrade(id) {
         
         loadTrades();
         updateStats();
+        updateDetailedStats();
         updateTotalRisk();
         loadOpenTrades();
+        updateGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         showNotification('معامله حذف شد.', 'warning');
@@ -1628,6 +1791,7 @@ async function deleteAccount(accountId) {
             activeAccountId = 1;
             activeAccount = accounts.find(acc => acc.id === 1);
             accountBalance = activeAccount ? activeAccount.balance : 0;
+            initialAccountBalance = accountBalance;
         }
         
         await saveAccountsToDB();
@@ -1637,7 +1801,9 @@ async function deleteAccount(accountId) {
         loadTrades();
         loadOpenTrades();
         updateStats();
+        updateDetailedStats();
         updateTotalRisk();
+        updateGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
@@ -1655,6 +1821,7 @@ async function switchAccount(accountId) {
     activeAccountId = accountId;
     activeAccount = newActiveAccount;
     accountBalance = activeAccount.balance;
+    initialAccountBalance = accountBalance;
     
     await db.saveSetting('activeAccountId', activeAccountId.toString());
     
@@ -1665,7 +1832,9 @@ async function switchAccount(accountId) {
     loadTrades();
     loadOpenTrades();
     updateStats();
+    updateDetailedStats();
     updateTotalRisk();
+    updateGrowthChart();
     setInitialMonthBasedOnLastTrade();
     updateMonthlyDashboard();
     calculateRisk();
@@ -2125,6 +2294,7 @@ async function importData() {
             activeAccountId = savedActiveId ? parseInt(savedActiveId) : accounts[0].id;
             activeAccount = accounts.find(acc => acc.id === activeAccountId) || accounts[0];
             accountBalance = activeAccount ? activeAccount.balance : 0;
+            initialAccountBalance = accountBalance;
         }
         
         showProgress('در حال به‌روزرسانی نمایش...', 100);
@@ -2134,7 +2304,9 @@ async function importData() {
         loadTrades();
         loadOpenTrades();
         updateStats();
+        updateDetailedStats();
         updateTotalRisk();
+        updateGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
