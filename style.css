@@ -1305,6 +1305,110 @@ button {
     border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
+/* ===== بخش آمار تفصیلی (جدید) ===== */
+.detailed-stats-table {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #334155;
+}
+
+.detailed-stats-title {
+    color: #60a5fa;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background: rgba(30, 41, 59, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #2d3748;
+}
+
+.stats-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stats-label {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.stats-value {
+    color: #f1f5f9;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+.stats-value.positive {
+    color: #10b981;
+}
+
+.stats-value.negative {
+    color: #ef4444;
+}
+
+/* ===== بخش نمودار رشد حساب (جدید) ===== */
+.growth-chart-container {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    border: 1px solid #334155;
+}
+
+.growth-chart-title {
+    color: #60a5fa;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#accountGrowthChart {
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+    background: rgba(30, 41, 59, 0.3);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chart-axis-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.axis-label.x-axis {
+    margin-right: auto;
+}
+
+.axis-label.y-axis {
+    margin-left: auto;
+}
+
 /* پشتیبان‌گیری */
 .backup-container {
     display: grid;
@@ -1889,4 +1993,25 @@ button {
     font-size: 2rem;
     margin-bottom: 15px;
     display: block;
+}
+
+/* واکنش‌گرایی برای بخش‌های جدید */
+@media (max-width: 768px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stats-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #2d3748;
+    }
+    
+    .stats-item:last-child {
+        border-bottom: none;
+    }
+    
+    #accountGrowthChart {
+        height: 250px;
+    }
 }
