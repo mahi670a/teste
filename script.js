@@ -148,6 +148,7 @@ function getMimeType(fileName) {
 let isImportCancelled = false;
 let importStartTime = 0;
 let accountGrowthChart = null;
+let monthlyGrowthChart = null;
 
 // ============================
 // کلاس مدیریت IndexedDB - ذخیره‌سازی نامحدود
@@ -547,6 +548,7 @@ function switchSection(sectionId) {
     
     if (sectionId === 'dashboard') {
         updateMonthlyDashboard();
+        updateMonthlyGrowthChart();
     }
     
     if (sectionId === 'history') {
@@ -577,19 +579,23 @@ function updateDetailedStats() {
     totalPnLElement.textContent = (totalPnL >= 0 ? '+' : '') + formatCurrency(Math.abs(totalPnL));
     totalPnLElement.style.color = totalPnL >= 0 ? '#10b981' : '#ef4444';
     
-    // درصد سود/ضرر نسبت به بالانس اولیه
+    // درصد سود/ضرر نسبت به بالانس اولیه با باکس رنگی
     const profitPercentage = initialAccountBalance > 0 ? (totalPnL / initialAccountBalance) * 100 : 0;
     const profitPercentageElement = document.getElementById('profitPercentage');
     profitPercentageElement.textContent = (profitPercentage >= 0 ? '+' : '') + profitPercentage.toFixed(2) + '%';
-    profitPercentageElement.style.color = profitPercentage >= 0 ? '#10b981' : '#ef4444';
+    profitPercentageElement.className = profitPercentage >= 0 ? 'stats-value percentage-box' : 'stats-value percentage-box negative';
     
-    // سود خالص (مجموع معاملات سودده)
+    // سود خالص (مجموع معاملات سودده) با باکس رنگی
     const totalProfit = calculateTotalProfit();
-    document.getElementById('netProfit').textContent = formatCurrency(totalProfit);
+    const netProfitElement = document.getElementById('netProfit');
+    netProfitElement.textContent = formatCurrency(totalProfit);
+    netProfitElement.className = 'stats-value positive-box';
     
-    // ضرر خالص (مجموع معاملات ضررده)
+    // ضرر خالص (مجموع معاملات ضررده) با باکس رنگی
     const totalLoss = calculateTotalLoss();
-    document.getElementById('netLoss').textContent = formatCurrency(totalLoss);
+    const netLossElement = document.getElementById('netLoss');
+    netLossElement.textContent = formatCurrency(totalLoss);
+    netLossElement.className = 'stats-value negative-box';
     
     // تعداد کل معاملات
     document.getElementById('totalTradesStats').textContent = trades.length;
@@ -602,7 +608,7 @@ function updateDetailedStats() {
 }
 
 // ============================
-// تابع به‌روزرسانی نمودار رشد حساب
+// تابع به‌روزرسانی نمودار رشد حساب کلی
 // ============================
 function updateGrowthChart() {
     const ctx = document.getElementById('accountGrowthChart').getContext('2d');
@@ -635,7 +641,7 @@ function updateGrowthChart() {
         accountGrowthChart.destroy();
     }
     
-    // ایجاد نمودار جدید
+    // ایجاد نمودار جدید با افکت نئونی
     accountGrowthChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -645,13 +651,18 @@ function updateGrowthChart() {
                 data: balanceHistory,
                 borderColor: '#3b82f6',
                 backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                borderWidth: 3,
+                borderWidth: 4,
+                borderDash: [5, 5],
                 pointBackgroundColor: '#60a5fa',
                 pointBorderColor: '#1e293b',
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                tension: 0.1,
-                fill: true
+                pointRadius: 5,
+                pointHoverRadius: 8,
+                tension: 0.2,
+                fill: true,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowBlur: 15,
+                shadowColor: 'rgba(59, 130, 246, 0.8)'
             }]
         },
         options: {
@@ -666,7 +677,7 @@ function updateGrowthChart() {
                     titleColor: '#f1f5f9',
                     bodyColor: '#94a3b8',
                     borderColor: '#3b82f6',
-                    borderWidth: 1
+                    borderWidth: 2
                 }
             },
             scales: {
@@ -698,6 +709,136 @@ function updateGrowthChart() {
                         text: 'رشد سرمایه ($)',
                         color: '#cbd5e1'
                     }
+                }
+            },
+            elements: {
+                line: {
+                    borderJoinStyle: 'round',
+                    borderCapStyle: 'round'
+                }
+            }
+        }
+    });
+}
+
+// ============================
+// تابع به‌روزرسانی نمودار رشد ماهانه
+// ============================
+function updateMonthlyGrowthChart() {
+    const ctx = document.getElementById('monthlyGrowthChart').getContext('2d');
+    
+    // فیلتر معاملات ماه جاری
+    const monthlyTrades = trades.filter(trade => {
+        if (trade.accountId !== activeAccountId) return false;
+        
+        const persianDate = getPersianDateParts(trade.date);
+        if (!persianDate) return false;
+        
+        return persianDate.year === currentYear && persianDate.month === currentMonth;
+    });
+    
+    // مرتب‌سازی معاملات ماه جاری بر اساس تاریخ
+    const sortedMonthlyTrades = [...monthlyTrades]
+        .filter(t => t.status === 'closed')
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // محاسبه رشد حساب در ماه جاری
+    let monthlyBalance = initialAccountBalance;
+    const monthlyBalanceHistory = [monthlyBalance];
+    const monthlyTradeNumbers = [0];
+    
+    sortedMonthlyTrades.forEach((trade, index) => {
+        const pnl = calculateTradePnL(trade);
+        monthlyBalance += pnl;
+        monthlyBalanceHistory.push(monthlyBalance);
+        monthlyTradeNumbers.push(index + 1);
+    });
+    
+    // اگر معامله‌ای در ماه جاری وجود نداشت
+    if (sortedMonthlyTrades.length === 0) {
+        monthlyBalanceHistory.push(initialAccountBalance);
+        monthlyTradeNumbers.push(1);
+    }
+    
+    // نابود کردن نمودار قبلی اگر وجود دارد
+    if (monthlyGrowthChart) {
+        monthlyGrowthChart.destroy();
+    }
+    
+    // ایجاد نمودار جدید با افکت نئونی
+    monthlyGrowthChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: monthlyTradeNumbers,
+            datasets: [{
+                label: 'رشد حساب ماهانه ($)',
+                data: monthlyBalanceHistory,
+                borderColor: '#f59e0b',
+                backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                borderWidth: 4,
+                borderDash: [5, 5],
+                pointBackgroundColor: '#fbbf24',
+                pointBorderColor: '#1e293b',
+                pointRadius: 5,
+                pointHoverRadius: 8,
+                tension: 0.2,
+                fill: true,
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowBlur: 15,
+                shadowColor: 'rgba(245, 158, 11, 0.8)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#1e293b',
+                    titleColor: '#f1f5f9',
+                    bodyColor: '#94a3b8',
+                    borderColor: '#f59e0b',
+                    borderWidth: 2
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(71, 85, 105, 0.2)'
+                    },
+                    ticks: {
+                        color: '#94a3b8'
+                    },
+                    title: {
+                        display: true,
+                        text: 'تعداد معاملات',
+                        color: '#cbd5e1'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(71, 85, 105, 0.2)'
+                    },
+                    ticks: {
+                        color: '#94a3b8',
+                        callback: function(value) {
+                            return '$' + value;
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'رشد سرمایه ($)',
+                        color: '#cbd5e1'
+                    }
+                }
+            },
+            elements: {
+                line: {
+                    borderJoinStyle: 'round',
+                    borderCapStyle: 'round'
                 }
             }
         }
@@ -786,9 +927,10 @@ async function initialize() {
         switchSection('trade-form');
         loadOpenTrades();
         
-        // مقداردهی اولیه نمودار
+        // مقداردهی اولیه نمودارها
         setTimeout(() => {
             updateGrowthChart();
+            updateMonthlyGrowthChart();
         }, 500);
         
         console.log('✅ برنامه با موفقیت راه‌اندازی شد');
@@ -1103,6 +1245,7 @@ async function updateBalance() {
     updateStats();
     updateDetailedStats();
     updateGrowthChart();
+    updateMonthlyGrowthChart();
     calculateRisk();
     closeAllModals();
     showNotification('بالانس حساب به‌روزرسانی شد.', 'success');
@@ -1287,6 +1430,7 @@ document.getElementById('tradeForm').addEventListener('submit', async function(e
     updateTotalRisk();
     loadOpenTrades();
     updateGrowthChart();
+    updateMonthlyGrowthChart();
     
     setInitialMonthBasedOnLastTrade();
     updateMonthlyDashboard();
@@ -1537,6 +1681,7 @@ async function confirmCloseTrade() {
         updateMonthlyDashboard();
         loadOpenTrades();
         updateGrowthChart();
+        updateMonthlyGrowthChart();
         
         closeCloseModal();
         
@@ -1682,6 +1827,7 @@ async function deleteTrade(id) {
         updateTotalRisk();
         loadOpenTrades();
         updateGrowthChart();
+        updateMonthlyGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         showNotification('معامله حذف شد.', 'warning');
@@ -1806,6 +1952,7 @@ async function deleteAccount(accountId) {
         updateDetailedStats();
         updateTotalRisk();
         updateGrowthChart();
+        updateMonthlyGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
@@ -1837,6 +1984,7 @@ async function switchAccount(accountId) {
     updateDetailedStats();
     updateTotalRisk();
     updateGrowthChart();
+    updateMonthlyGrowthChart();
     setInitialMonthBasedOnLastTrade();
     updateMonthlyDashboard();
     calculateRisk();
@@ -1864,6 +2012,7 @@ function changeMonth(direction) {
     currentMonth = newMonth;
     
     updateMonthlyDashboard();
+    updateMonthlyGrowthChart();
 }
 
 function updateMonthlyDashboard() {
@@ -2309,6 +2458,7 @@ async function importData() {
         updateDetailedStats();
         updateTotalRisk();
         updateGrowthChart();
+        updateMonthlyGrowthChart();
         setInitialMonthBasedOnLastTrade();
         updateMonthlyDashboard();
         
