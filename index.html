@@ -190,9 +190,6 @@
                 <button type="button" class="btn-secondary" onclick="closeDetailsModal()">
                     <i class="fas fa-times"></i> بستن
                 </button>
-                <button type="button" class="btn-warning" onclick="editTradeFromDetails()">
-                    <i class="fas fa-edit"></i> ویرایش
-                </button>
             </div>
         </div>
     </div>
@@ -431,6 +428,13 @@
                     <!-- بخش ثبت معامله (پیش‌فرض فعال) -->
                     <section id="trade-form-section" class="section active-section">
                         <h2 class="section-title"><i class="fas fa-plus-circle"></i> ثبت معامله جدید</h2>
+                        
+                        <!-- معاملات باز -->
+                        <div class="open-trades-container">
+                            <h3 class="open-trades-title"><i class="fas fa-clock"></i> معاملات باز</h3>
+                            <div id="openTradesList" class="open-trades-list"></div>
+                        </div>
+                        
                         <form id="tradeForm" class="trade-form">
                             <div class="form-grid">
                                 <div class="form-group">
