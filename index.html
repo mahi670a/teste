@@ -23,6 +23,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- کتابخانه Chart.js برای نمودار -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
     <!-- کتابخانه JSZip برای کار با فایل‌های ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     
@@ -673,6 +676,8 @@
                     <!-- بخش آمار و تحلیل کلی (مخفی در ابتدا) -->
                     <section id="stats-section" class="section">
                         <h2 class="section-title"><i class="fas fa-chart-bar"></i> آمار عملکرد کلی</h2>
+                        
+                        <!-- کارت‌های آماری -->
                         <div class="stats-container">
                             <div class="stat-card">
                                 <div class="stat-icon"><i class="fas fa-exchange-alt"></i></div>
@@ -713,6 +718,65 @@
                                 <div class="stat-icon"><i class="fas fa-clock"></i></div>
                                 <div class="stat-label">معاملات باز</div>
                                 <div class="stat-value neutral-stat" id="openTrades">0</div>
+                            </div>
+                        </div>
+                        
+                        <!-- جدول آمار تفصیلی -->
+                        <div class="detailed-stats-table">
+                            <h3 class="detailed-stats-title"><i class="fas fa-chart-simple"></i> آمار تفصیلی</h3>
+                            <div class="stats-grid">
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">موجودی اولیه:</span>
+                                        <span class="stats-value" id="initialBalance">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">موجودی فعلی:</span>
+                                        <span class="stats-value" id="currentBalanceStats">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">سود و ضرر:</span>
+                                        <span class="stats-value" id="totalPnLStats">$0</span>
+                                    </div>
+                                </div>
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">درصد سود:</span>
+                                        <span class="stats-value" id="profitPercentage">0%</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">سود خالص:</span>
+                                        <span class="stats-value positive" id="netProfit">$0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">ضرر خالص:</span>
+                                        <span class="stats-value negative" id="netLoss">$0</span>
+                                    </div>
+                                </div>
+                                <div class="stats-row">
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد کل معاملات:</span>
+                                        <span class="stats-value" id="totalTradesStats">0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد معاملات لانگ:</span>
+                                        <span class="stats-value" id="longTradesCount">0</span>
+                                    </div>
+                                    <div class="stats-item">
+                                        <span class="stats-label">تعداد معاملات شورت:</span>
+                                        <span class="stats-value" id="shortTradesCount">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- نمودار رشد حساب -->
+                        <div class="growth-chart-container">
+                            <h3 class="growth-chart-title"><i class="fas fa-chart-line"></i> رشد حساب</h3>
+                            <canvas id="accountGrowthChart"></canvas>
+                            <div class="chart-axis-labels">
+                                <span class="axis-label x-axis">تعداد معاملات</span>
+                                <span class="axis-label y-axis">رشد سرمایه ($)</span>
                             </div>
                         </div>
                     </section>
