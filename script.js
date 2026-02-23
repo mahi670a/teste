@@ -641,7 +641,7 @@ function updateGrowthChart() {
         accountGrowthChart.destroy();
     }
     
-    // ایجاد نمودار جدید با افکت نئونی
+    // ایجاد نمودار جدید با خط صاف و افکت نئونی
     accountGrowthChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -652,13 +652,13 @@ function updateGrowthChart() {
                 borderColor: '#3b82f6',
                 backgroundColor: 'rgba(59, 130, 246, 0.1)',
                 borderWidth: 4,
-                borderDash: [5, 5],
                 pointBackgroundColor: '#60a5fa',
                 pointBorderColor: '#1e293b',
                 pointRadius: 5,
                 pointHoverRadius: 8,
-                tension: 0.2,
+                tension: 0.1,
                 fill: true,
+                borderDash: [], // خط صاف (بدون نقطه چین)
                 shadowOffsetX: 0,
                 shadowOffsetY: 0,
                 shadowBlur: 15,
@@ -765,7 +765,7 @@ function updateMonthlyGrowthChart() {
         monthlyGrowthChart.destroy();
     }
     
-    // ایجاد نمودار جدید با افکت نئونی
+    // ایجاد نمودار جدید با خط صاف و افکت نئونی
     monthlyGrowthChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -776,13 +776,13 @@ function updateMonthlyGrowthChart() {
                 borderColor: '#f59e0b',
                 backgroundColor: 'rgba(245, 158, 11, 0.1)',
                 borderWidth: 4,
-                borderDash: [5, 5],
                 pointBackgroundColor: '#fbbf24',
                 pointBorderColor: '#1e293b',
                 pointRadius: 5,
                 pointHoverRadius: 8,
-                tension: 0.2,
+                tension: 0.1,
                 fill: true,
+                borderDash: [], // خط صاف (بدون نقطه چین)
                 shadowOffsetX: 0,
                 shadowOffsetY: 0,
                 shadowBlur: 15,
