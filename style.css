@@ -21,13 +21,14 @@ body {
     width: 100%;
 }
 
-/* ===== Toolbar بالا - با دکمه‌های هم اندازه ===== */
+/* ===== Toolbar بالا - طراحی خاص و چشمنواز ===== */
 .toolbar {
     width: 100%;
-    height: 70px;
-    background: rgba(15, 23, 42, 0.95);
+    height: 80px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(26, 38, 61, 0.98));
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #334155;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6) 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +38,37 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.2);
+    animation: toolbarGlow 3s ease-in-out infinite;
+}
+
+@keyframes toolbarGlow {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(59, 130, 246, 0.6), 0 0 50px rgba(139, 92, 246, 0.4);
+    }
+}
+
+.toolbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #60a5fa, #a78bfa, #f472b6, transparent);
+    animation: borderFlow 4s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .toolbar-header {
@@ -45,34 +76,66 @@ body {
     align-items: center;
     gap: 15px;
     flex-shrink: 0;
+    position: relative;
+    padding: 5px 15px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.toolbar-header:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: #3b82f6;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    transform: scale(1.02);
 }
 
 .toolbar-logo {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: white;
-    box-shadow: 0 5px 10px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.3);
+    animation: logoPulse 2s ease-in-out infinite;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+.toolbar-logo:hover {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6), 0 0 30px rgba(236, 72, 153, 0.4);
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(59, 130, 246, 0.7), 0 0 35px rgba(236, 72, 153, 0.5);
+    }
 }
 
 .toolbar-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #60a5fa;
-    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+    letter-spacing: 1px;
 }
 
 .toolbar-menu {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex: 1;
     justify-content: center;
 }
@@ -80,82 +143,171 @@ body {
 .toolbar-btn {
     background: transparent;
     border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 50px;
     color: #94a3b8;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     white-space: nowrap;
-    min-width: 120px;
+    min-width: 130px;
     justify-content: center;
-    height: 44px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.toolbar-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.toolbar-btn:hover::before {
+    left: 100%;
 }
 
 .toolbar-btn i {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #64748b;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.toolbar-btn span {
+    position: relative;
+    z-index: 1;
 }
 
 .toolbar-btn:hover {
-    background: rgba(59, 130, 246, 0.1);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
     color: #f1f5f9;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
 }
 
 .toolbar-btn:hover i {
-    color: #3b82f6;
+    color: #60a5fa;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px #3b82f6);
 }
 
 .toolbar-btn.active {
-    background: rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
     color: #60a5fa;
-    border-bottom: 2px solid #3b82f6;
+    border-bottom: none;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 0 25px rgba(139, 92, 246, 0.3);
+    position: relative;
+}
+
+.toolbar-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+    border-radius: 3px;
+    filter: blur(1px);
+    animation: activeGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+    0%, 100% {
+        opacity: 0.7;
+        box-shadow: 0 0 5px #3b82f6, 0 0 10px #8b5cf6;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 10px #3b82f6, 0 0 20px #8b5cf6, 0 0 30px #ec4899;
+    }
 }
 
 .toolbar-btn.active i {
-    color: #3b82f6;
+    color: #60a5fa;
+    filter: drop-shadow(0 0 8px #3b82f6);
 }
 
 .toolbar-calculator {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    position: relative;
 }
 
 .toolbar-calculator .calculator-btn {
-    padding: 8px 16px;
-    background: linear-gradient(135deg, #10b981, #059669);
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #10b981, #059669, #047857);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 120px;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3), 0 0 20px rgba(5, 150, 105, 0.2);
+    min-width: 130px;
     justify-content: center;
-    height: 44px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.toolbar-calculator .calculator-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.toolbar-calculator .calculator-btn:hover::before {
+    left: 100%;
 }
 
 .toolbar-calculator .calculator-btn:hover {
-    background: linear-gradient(135deg, #059669, #047857);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, #059669, #047857, #065f46);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5), 0 0 35px rgba(5, 150, 105, 0.3);
+    border-color: rgba(16, 185, 129, 0.6);
+}
+
+.toolbar-calculator .calculator-btn i {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.toolbar-calculator .calculator-btn span {
+    position: relative;
+    z-index: 1;
 }
 
 /* محتوای اصلی */
 .main-wrapper {
-    margin-top: 90px;
+    margin-top: 100px;
     padding: 20px;
     width: 100%;
 }
@@ -174,8 +326,12 @@ body {
 /* واکنش‌گرایی برای موبایل */
 @media (max-width: 1024px) {
     .toolbar-btn {
-        min-width: 100px;
-        padding: 8px 12px;
+        min-width: 110px;
+        padding: 8px 15px;
+    }
+    
+    .toolbar-calculator .calculator-btn {
+        min-width: 110px;
     }
 }
 
@@ -195,10 +351,15 @@ body {
     .toolbar-btn {
         min-width: calc(50% - 5px);
         flex: 1;
+        padding: 8px 12px;
+    }
+    
+    .toolbar-calculator .calculator-btn {
+        min-width: 100%;
     }
     
     .main-wrapper {
-        margin-top: 180px;
+        margin-top: 200px;
     }
 }
 
@@ -206,8 +367,14 @@ body {
     .toolbar-btn {
         min-width: 100%;
     }
+    
+    .toolbar-header {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
+/* بقیه استایل‌ها مثل قبل باقی می‌مانند */
 /* بالانس */
 .balance-container {
     background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
