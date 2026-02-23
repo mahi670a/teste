@@ -1373,8 +1373,69 @@ button {
     color: #94a3b8;
 }
 
-/* مودال‌های جزئیات و بستن معامله */
-.details-modal, .close-modal, .image-modal {
+/* ===== مودال‌های تصویر و جزئیات (اصلاح شده) ===== */
+
+/* مودال تصویر بزرگ - مخصوص نمایش تمام صفحه */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    display: none;
+    cursor: pointer;
+}
+
+.image-modal-content {
+    max-width: 95%;
+    max-height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal-content img {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 2px solid #475569;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: rgba(239, 68, 68, 0.8);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 20001;
+    border: 2px solid white;
+}
+
+.image-modal-close:hover {
+    background: #ef4444;
+    transform: scale(1.1);
+}
+
+/* مودال جزئیات معامله */
+.details-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -1384,7 +1445,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    z-index: 10000;
+    z-index: 15000;
     display: none;
     backdrop-filter: blur(5px);
     overflow-y: auto;
@@ -1392,61 +1453,16 @@ button {
 }
 
 .details-modal-content {
-    max-width: 600px;
+    max-width: 650px;
+    width: 95%;
     background: linear-gradient(135deg, #1e293b, #0f172a);
     padding: 25px;
-    border-radius: 16px;
+    border-radius: 20px;
     border: 1px solid #475569;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     animation: modalSlideUp 0.4s ease-out;
-    margin-top: 50px;
-}
-
-.close-modal-content {
-    max-width: 400px;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid #475569;
-    width: 90%;
-    animation: modalSlideUp 0.4s ease-out;
-}
-
-.image-modal-content {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.image-modal-content img {
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 8px;
-    border: 2px solid #475569;
-}
-
-.image-modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    z-index: 10001;
-}
-
-.image-modal-close:hover {
-    background: rgba(239, 68, 68, 0.8);
-    transform: scale(1.1);
+    margin: 30px auto;
+    position: relative;
 }
 
 .details-modal-content h3 {
@@ -1457,129 +1473,102 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    font-size: 1.3rem;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #334155;
 }
 
-.close-modal-content h3 {
-    color: #60a5fa;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 12px;
-}
-
-.detail-label {
-    color: #94a3b8;
-    font-size: 0.85rem;
-    margin-bottom: 4px;
-}
-
-.detail-value {
-    color: #f1f5f9;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 10px;
-    background-color: rgba(30, 41, 59, 0.5);
-    border-radius: 6px;
-    border: 1px solid #475569;
-}
-
-.detail-value.price {
-    font-family: 'Courier New', monospace;
-    direction: ltr;
-    text-align: right;
-}
-
-#detail-risk-amount {
-    color: #ef4444;
-}
-
-.detail-section {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #475569;
-}
-
-.detail-section-title {
-    color: #60a5fa;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#detail-fee-entry, #detail-fee-exit, #detail-total-fee {
-    color: #f59e0b;
-}
-
-#detail-total-fee {
-    font-weight: 700;
-}
-
+/* استایل اسکرین‌شات‌ها در مودال جزئیات */
 .screenshot-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px;
+    margin-top: 15px;
 }
 
 .screenshot-item {
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #475569;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #334155;
 }
 
 .screenshot-item h4 {
     color: #94a3b8;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-#detail-screenshot-entry-container, #detail-screenshot-exit-container {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
     text-align: center;
 }
 
 .screenshot-image {
     max-width: 100%;
     max-height: 150px;
-    border-radius: 6px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    display: block;
+    margin: 0 auto;
 }
 
 .screenshot-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    border-color: #3b82f6;
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
-.no-screenshot {
-    color: #64748b;
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 20px;
-    background: rgba(30, 41, 59, 0.3);
-    border-radius: 6px;
-    font-style: italic;
-}
-
-.details-modal-buttons {
+/* مودال بستن معامله */
+.close-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    z-index: 15000;
+    display: none;
+    backdrop-filter: blur(5px);
 }
 
+.close-modal-content {
+    max-width: 450px;
+    width: 90%;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #475569;
+    animation: modalSlideUp 0.4s ease-out;
+}
+
+.close-modal-content h3 {
+    color: #60a5fa;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.close-preview {
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: none;
+    border: 2px solid #334155;
+}
+
+.close-preview.active {
+    display: block;
+    margin: 15px auto 0;
+}
+
+/* انیمیشن */
 @keyframes modalSlideUp {
     from {
         transform: translateY(50px);
@@ -1591,39 +1580,101 @@ button {
     }
 }
 
-.close-preview {
-    max-width: 100%;
-    max-height: 200px;
-    border-radius: 8px;
-    margin: 15px 0;
-    display: none;
+/* بقیه استایل‌های مودال */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
 }
 
-.close-preview.active {
-    display: block;
-    margin: 15px auto 0;
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    color: #f1f5f9;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    background-color: rgba(30, 41, 59, 0.5);
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
+.detail-value.price {
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    text-align: right;
+}
+
+.detail-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #334155;
+}
+
+.detail-section-title {
+    color: #60a5fa;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.no-screenshot {
+    color: #64748b;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 30px;
+    background: rgba(30, 41, 59, 0.3);
+    border-radius: 8px;
+    font-style: italic;
+}
+
+.details-modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    justify-content: center;
 }
 
 .screenshot-remove-wrapper {
     margin-top: 15px;
-    text-align: left;
+    text-align: center;
 }
 
 .screenshot-remove {
     color: #ef4444;
     cursor: pointer;
     display: none;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .screenshot-remove.active {
-    display: inline;
+    display: inline-block;
+}
+
+.screenshot-remove:hover {
+    background: rgba(239, 68, 68, 0.2);
 }
 
 .screenshot-upload {
     width: 100%;
     padding: 12px;
     background-color: #1e293b;
-    border: 1px solid #475569;
+    border: 2px dashed #475569;
     border-radius: 8px;
     color: #f1f5f9;
     font-size: 0.9rem;
@@ -1633,6 +1684,7 @@ button {
     justify-content: center;
     gap: 8px;
     margin: 15px 0;
+    transition: all 0.3s;
 }
 
 .screenshot-upload:hover {
