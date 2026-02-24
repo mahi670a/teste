@@ -1,0 +1,22 @@
+<svg width="420" height="160" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="160" rx="20" fill="#0F172A"/>
+  
+  <!-- JM Text -->
+  <text x="60" y="105" font-family="Helvetica, Arial, sans-serif" 
+        font-size="72" font-weight="700" letter-spacing="8" 
+        fill="#FFFFFF">
+    J M
+  </text>
+
+  <!-- Growth Line Accent -->
+  <path d="M250 95 L270 75 L290 85 L310 60" 
+        stroke="#22C55E" stroke-width="4" 
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Journal Me Text -->
+  <text x="60" y="135" font-family="Helvetica, Arial, sans-serif" 
+        font-size="16" letter-spacing="4" 
+        fill="#94A3B8">
+    JOURNAL ME
+  </text>
+</svg>
