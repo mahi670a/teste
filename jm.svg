@@ -1,0 +1,66 @@
+<svg width="520" height="200" viewBox="0 0 520 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <!-- Green Glow -->
+    <filter id="greenGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Red Glow -->
+    <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="520" height="200" rx="24" fill="#070B14"/>
+
+  <!-- JM Big -->
+  <text x="70" y="115"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="90"
+        font-weight="700"
+        letter-spacing="10"
+        fill="#39FF14"
+        filter="url(#greenGlow)">
+        J
+  </text>
+
+  <text x="150" y="115"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="90"
+        font-weight="700"
+        letter-spacing="10"
+        fill="#FF3131"
+        filter="url(#redGlow)">
+        M
+  </text>
+
+  <!-- Brand Text -->
+  <text x="70" y="165"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="28"
+        letter-spacing="6"
+        fill="#39FF14"
+        filter="url(#greenGlow)">
+        JOURNAL
+  </text>
+
+  <text x="245" y="165"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="28"
+        letter-spacing="6"
+        fill="#FF3131"
+        filter="url(#redGlow)">
+        ME
+  </text>
+
+</svg>
