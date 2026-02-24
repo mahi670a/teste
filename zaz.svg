@@ -1,0 +1,44 @@
+<svg width="720" height="220" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
+    <stop offset="0%" stop-color="#7CFF4F"/>
+    <stop offset="100%" stop-color="#00FFA3"/>
+  </linearGradient>
+
+  <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
+    <stop offset="0%" stop-color="#FF5A5A"/>
+    <stop offset="100%" stop-color="#FF003C"/>
+  </linearGradient>
+</defs>
+
+<rect width="720" height="220" rx="40" fill="#0B0F1A"/>
+
+<!-- JM Monogram -->
+<path d="M150 70 V160 Q150 190 185 190 Q220 190 220 150"
+      stroke="url(#greenGrad)"
+      stroke-width="16"
+      stroke-linecap="round"/>
+
+<path d="M400 180 L430 80 L460 150 L490 65 L520 180"
+      stroke="url(#redGrad)"
+      stroke-width="16"
+      stroke-linecap="round"/>
+
+<text x="150" y="210"
+      font-family="Helvetica, Arial"
+      font-size="36"
+      letter-spacing="12"
+      fill="url(#greenGrad)">
+      JOURNAL
+</text>
+
+<text x="430" y="210"
+      font-family="Helvetica, Arial"
+      font-size="36"
+      letter-spacing="12"
+      fill="url(#redGrad)">
+      ME
+</text>
+
+</svg>
