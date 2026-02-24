@@ -6,25 +6,21 @@
 </style>
 
 <defs>
-  <!-- Background -->
   <radialGradient id="bg" cx="50%" cy="45%" r="75%">
     <stop offset="0%" stop-color="#0F172A"/>
     <stop offset="100%" stop-color="#020409"/>
   </radialGradient>
 
-  <!-- Green -->
   <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
     <stop offset="0%" stop-color="#7CFF4F"/>
     <stop offset="100%" stop-color="#00FFA3"/>
   </linearGradient>
 
-  <!-- Red -->
   <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
     <stop offset="0%" stop-color="#FF6A6A"/>
     <stop offset="100%" stop-color="#FF003C"/>
   </linearGradient>
 
-  <!-- Soft Shadow -->
   <filter id="shadow">
     <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
   </filter>
@@ -37,7 +33,7 @@
 <rect x="95" y="45" width="14" height="170" rx="7"
       fill="url(#redGrad)" class="glow-red"/>
 
-<!-- Notebook Cover -->
+<!-- Notebook -->
 <rect x="105" y="45" width="200" height="170" rx="22"
       fill="#111827"
       stroke="url(#greenGrad)"
@@ -45,13 +41,9 @@
       filter="url(#shadow)"
       class="glow-green"/>
 
-<!-- Inner Paper -->
+<!-- Paper -->
 <rect x="120" y="60" width="170" height="140" rx="14"
       fill="#0F172A"/>
-
-<!-- Paper Lines -->
-<line x1="135" y1="100" x2="270" y2="100" stroke="#1E293B" stroke-width="2"/>
-<line x1="135" y1="120" x2="270" y2="120" stroke="#1E293B" stroke-width="2"/>
 
 <!-- Writing Path -->
 <path id="writePath"
@@ -70,31 +62,33 @@
            repeatCount="indefinite"/>
 </path>
 
-<!-- Pen -->
-<g class="glow-red">
-  <!-- Body -->
-  <rect width="70" height="9" rx="4"
-        fill="url(#redGrad)">
-    <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
-      <mpath href="#writePath"/>
-    </animateMotion>
-  </rect>
+<!-- Pen Group (Tip forward) -->
+<g>
+  <g transform="rotate(-25)">
+    <!-- Body -->
+    <rect x="-60" y="-4" width="60" height="8" rx="4"
+          fill="url(#redGrad)" class="glow-red">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <mpath href="#writePath"/>
+      </animateMotion>
+    </rect>
 
-  <!-- Metal Ring -->
-  <rect x="60" width="6" height="9"
-        fill="#DDD">
-    <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
-      <mpath href="#writePath"/>
-    </animateMotion>
-  </rect>
+    <!-- Metal ring -->
+    <rect x="-8" y="-4" width="6" height="8"
+          fill="#DDD">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <mpath href="#writePath"/>
+      </animateMotion>
+    </rect>
 
-  <!-- Tip -->
-  <polygon points="66,0 78,4.5 66,9"
-           fill="#FFFFFF">
-    <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
-      <mpath href="#writePath"/>
-    </animateMotion>
-  </polygon>
+    <!-- Tip -->
+    <polygon points="0,-5 12,0 0,5"
+             fill="#FFFFFF">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <mpath href="#writePath"/>
+      </animateMotion>
+    </polygon>
+  </g>
 </g>
 
 </svg>
