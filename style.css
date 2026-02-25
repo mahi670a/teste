@@ -21,7 +21,7 @@ body {
     width: 100%;
 }
 
-/* ===== Toolbar بالا - با دکمه‌های هم اندازه ===== */
+/* ===== Toolbar بالا ===== */
 .toolbar {
     width: 100%;
     height: 70px;
@@ -47,39 +47,47 @@ body {
     flex-shrink: 0;
 }
 
-/* ===== لوگوی Journal Me (بدون دور) ===== */
-.journalme-logo {
+/* ===== لوگوی SVG ===== */
+.custom-logo {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    margin-left: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
-.journalme-logo:hover {
-    transform: scale(1.05);
+.custom-logo:hover {
+    transform: scale(1.02);
 }
 
-.journal-text {
-    font-family: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+.custom-logo svg {
+    display: block;
+    width: auto;
+    height: 45px;
+    overflow: visible;
 }
 
-.me-text {
-    font-family: 'Poppins', 'Montserrat', 'Segoe UI', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+.custom-logo svg text {
+    font-family: 'Helvetica', 'Arial', sans-serif !important;
+    font-size: 40px !important;
+    font-weight: normal !important;
+    letter-spacing: 12px !important;
+    fill: url(#greenGrad) !important;
+    stroke: none !important;
+}
+
+.custom-logo svg path {
+    vector-effect: non-scaling-stroke;
+}
+
+/* استایل قدیمی لوگو رو غیرفعال می‌کنیم */
+.journalme-logo {
+    display: none;
+}
+
+.journal-text, .me-text {
+    display: none;
 }
 
 .toolbar-menu {
@@ -184,7 +192,7 @@ body {
     border: 1px solid #334155;
 }
 
-/* واکنش‌گرایی برای موبایل */
+/* ========== واکنش‌گرایی برای موبایل ========== */
 @media (max-width: 1024px) {
     .toolbar-btn {
         min-width: 100px;
@@ -193,38 +201,460 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* تولبار */
     .toolbar {
         height: auto;
         flex-direction: column;
-        padding: 15px;
-        gap: 15px;
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .toolbar-header {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .custom-logo {
+        margin-left: 0;
+    }
+    
+    .custom-logo svg {
+        height: 35px;
     }
     
     .toolbar-menu {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
         width: 100%;
     }
     
     .toolbar-btn {
-        min-width: calc(50% - 5px);
-        flex: 1;
+        min-width: 0;
+        width: 100%;
+        padding: 8px 4px;
+        font-size: 0.7rem;
+        flex-direction: column;
+        gap: 4px;
+        height: auto;
+        border-radius: 8px;
     }
     
-    .journal-text, .me-text {
-        font-size: 1.4rem;
+    .toolbar-btn i {
+        font-size: 1.1rem;
+        margin: 0;
     }
     
+    .toolbar-btn span {
+        font-size: 0.6rem;
+        white-space: nowrap;
+    }
+    
+    .toolbar-calculator {
+        width: 100%;
+    }
+    
+    .toolbar-calculator .calculator-btn {
+        width: 100%;
+        min-width: 0;
+        padding: 8px;
+        font-size: 0.8rem;
+        height: 40px;
+    }
+    
+    /* فاصله از تولبار */
     .main-wrapper {
-        margin-top: 180px;
+        margin-top: 160px;
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    /* بالانس */
+    .balance-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .balance-main {
+        justify-content: center;
+    }
+    
+    .balance-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .balance-value {
+        font-size: 1.5rem;
+    }
+    
+    .balance-details {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .balance-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .balance-btn {
+        flex: 1;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* فرم ثبت معامله */
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .prices-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+    
+    label {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    
+    input, select, .screenshot-upload-input {
+        height: 40px;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    
+    .quick-risk-buttons {
+        flex-direction: row;
+        gap: 5px;
+    }
+    
+    .quick-risk-btn {
+        padding: 6px;
+        font-size: 0.8rem;
+        min-height: 32px;
+    }
+    
+    /* خلاصه ریسک */
+    .risk-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .risk-summary-item {
+        padding: 10px;
+    }
+    
+    .risk-summary-label {
+        font-size: 0.8rem;
+    }
+    
+    .risk-summary-value {
+        font-size: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        min-width: 0;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    /* معاملات باز */
+    .open-trades-container {
+        padding: 15px;
+    }
+    
+    .open-trades-title {
+        font-size: 1rem;
+    }
+    
+    .open-trade-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .open-trade-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+    }
+    
+    .open-trade-symbol {
+        align-self: flex-start;
+        font-size: 0.9rem;
+    }
+    
+    .open-trade-detail {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 0.8rem;
+    }
+    
+    .open-trade-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    /* جداول */
+    .trades-table-container {
+        overflow-x: auto;
+    }
+    
+    .trades-table {
+        min-width: 800px;
+    }
+    
+    .trades-table th {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .trades-table td {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .actions {
+        min-width: 100px;
+    }
+    
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+    }
+    
+    /* کارت‌های آمار */
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+        min-height: 80px;
+    }
+    
+    .stat-icon {
+        font-size: 0.9rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+    
+    /* آمار تفصیلی */
+    .detailed-stats-table {
+        padding: 15px;
+    }
+    
+    .detailed-stats-title {
+        font-size: 1rem;
+    }
+    
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .stats-item {
+        padding: 5px 0;
+        border-bottom: 1px solid #2d3748;
+    }
+    
+    .stats-item:last-child {
+        border-bottom: none;
+    }
+    
+    .stats-label {
+        font-size: 0.8rem;
+    }
+    
+    .stats-value {
+        font-size: 0.9rem;
+    }
+    
+    /* نمودارها */
+    .growth-chart-container,
+    .monthly-chart-container {
+        padding: 15px;
+    }
+    
+    .growth-chart-title,
+    .monthly-chart-title {
+        font-size: 1rem;
+    }
+    
+    #accountGrowthChart,
+    #monthlyGrowthChart {
+        height: 200px;
+    }
+    
+    .chart-axis-labels {
+        font-size: 0.8rem;
+    }
+    
+    /* داشبورد */
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .month-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .current-month {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .dashboard-stat-card {
+        padding: 12px;
+    }
+    
+    .dashboard-stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .dashboard-stat-value {
+        font-size: 1rem;
+    }
+    
+    /* مودال‌ها */
+    .details-modal-content {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .details-modal-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .detail-label {
+        font-size: 0.75rem;
+    }
+    
+    .detail-value {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    
+    .screenshot-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .close-modal-content {
+        padding: 20px;
+    }
+    
+    .close-modal-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .modal-btn {
+        width: 100%;
+    }
+    
+    /* پشتیبان‌گیری */
+    .backup-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .backup-card {
+        padding: 18px;
+    }
+    
+    .backup-header {
+        font-size: 1rem;
+    }
+    
+    .backup-description {
+        font-size: 0.85rem;
+    }
+    
+    .btn-backup {
+        padding: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .toolbar-btn {
-        min-width: 100%;
+    .toolbar-menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .toolbar-btn:nth-child(5) {
+        grid-column: span 2;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .balance-details {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .main-wrapper {
+        margin-top: 190px;
     }
 }
 
+/* بقیه استایل‌ها مثل قبل باقی می‌مونن... */
 /* بالانس */
 .balance-container {
     background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
