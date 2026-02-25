@@ -255,12 +255,12 @@
     
     <!-- ساختار اصلی با Toolbar -->
     <div class="app-wrapper">
-        <!-- Toolbar بالا - عریض‌تر شده -->
-        <div class="toolbar" style="padding: 0 50px;">
-            <div class="toolbar-header" style="min-width: 380px;">
-                <!-- لوگوی SVG با viewBox بزرگتر برای جا شدن کامل متن -->
-                <div class="custom-logo" style="margin-left: 20px;">
-                    <svg width="400" height="90" viewBox="0 0 950 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Toolbar بالا -->
+        <div class="toolbar">
+            <div class="toolbar-header">
+                <!-- لوگوی SVG اصلی شما - بدون هیچ تغییری -->
+                <div class="custom-logo">
+                    <svg width="180" height="50" viewBox="0 0 760 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <!-- Background -->
                             <radialGradient id="bg" cx="50%" cy="50%" r="80%">
@@ -298,16 +298,16 @@
                             </filter>
                         </defs>
 
-                        <!-- Background - کادر بزرگتر -->
-                        <rect width="950" height="350" rx="40" fill="url(#bg)"/>
+                        <!-- Background -->
+                        <rect width="760" height="300" rx="40" fill="url(#bg)"/>
 
-                        <!-- Animated Market Line - کمی پایین‌تر -->
-                        <path d="M90 220 
-                               L150 160 
-                               L200 190 
-                               L260 130 
-                               L320 180 
-                               L380 140"
+                        <!-- Animated Market Line -->
+                        <path d="M90 190 
+                               L150 130 
+                               L200 160 
+                               L260 100 
+                               L320 150 
+                               L380 110"
                             stroke="url(#greenGrad)"
                             stroke-width="5"
                             stroke-linecap="round"
@@ -321,11 +321,11 @@
                                 repeatCount="indefinite"/>
                         </path>
 
-                        <!-- J - کمی جابجا شده -->
-                        <path d="M140 100 
-                               V220 
-                               Q140 250 180 250 
-                               Q220 250 220 200"
+                        <!-- J -->
+                        <path d="M130 90 
+                               V200 
+                               Q130 230 170 230 
+                               Q210 230 210 180"
                             stroke="url(#greenGrad)"
                             stroke-width="16"
                             stroke-linecap="round"
@@ -337,12 +337,12 @@
                                 repeatCount="indefinite"/>
                         </path>
 
-                        <!-- M - کمی جابجا شده -->
-                        <path d="M520 250 
-                               L560 120 
-                               L600 200 
-                               L640 100 
-                               L680 250"
+                        <!-- M -->
+                        <path d="M420 220 
+                               L460 95 
+                               L500 180 
+                               L540 75 
+                               L580 220"
                             stroke="url(#redGrad)"
                             stroke-width="16"
                             stroke-linecap="round"
@@ -354,20 +354,20 @@
                                 repeatCount="indefinite"/>
                         </path>
 
-                        <!-- Brand Text - با فاصله کافی از لبه‌ها -->
-                        <text x="120" y="300"
+                        <!-- Brand Text -->
+                        <text x="130" y="270"
                             font-family="Helvetica, Arial, sans-serif"
-                            font-size="55"
-                            letter-spacing="14"
+                            font-size="40"
+                            letter-spacing="12"
                             fill="url(#greenGrad)"
                             filter="url(#glow)">
                             JOURNAL
                         </text>
 
-                        <text x="550" y="300"
+                        <text x="470" y="270"
                             font-family="Helvetica, Arial, sans-serif"
-                            font-size="55"
-                            letter-spacing="14"
+                            font-size="40"
+                            letter-spacing="12"
                             fill="url(#redGrad)"
                             filter="url(#glow)">
                             ME
@@ -794,164 +794,3 @@
                             </table>
                         </div>
                     </section>
-                    
-                    <!-- بخش آمار و تحلیل کلی (مخفی در ابتدا) -->
-                    <section id="stats-section" class="section">
-                        <h2 class="section-title"><i class="fas fa-chart-bar"></i> آمار عملکرد کلی</h2>
-                        
-                        <!-- کارت‌های آماری -->
-                        <div class="stats-container">
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-exchange-alt"></i></div>
-                                <div class="stat-label">تعداد معاملات</div>
-                                <div class="stat-value neutral-stat" id="totalTrades">0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-arrow-up"></i></div>
-                                <div class="stat-label">سود کل</div>
-                                <div class="stat-value positive" id="totalProfit">$0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-arrow-down"></i></div>
-                                <div class="stat-label">ضرر کل</div>
-                                <div class="stat-value negative" id="totalLoss">$0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-percentage"></i></div>
-                                <div class="stat-label">نرخ موفقیت</div>
-                                <div class="stat-value neutral-stat" id="winRate">0%</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-receipt"></i></div>
-                                <div class="stat-label">کارمزد کل</div>
-                                <div class="stat-value fee-stat" id="totalFees">$0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                                <div class="stat-label">بیشترین سود</div>
-                                <div class="stat-value positive" id="maxProfit">$0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                                <div class="stat-label">بیشترین ضرر</div>
-                                <div class="stat-value negative" id="maxLoss">$0</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                                <div class="stat-label">معاملات باز</div>
-                                <div class="stat-value neutral-stat" id="openTrades">0</div>
-                            </div>
-                        </div>
-                        
-                        <!-- جدول آمار تفصیلی -->
-                        <div class="detailed-stats-table">
-                            <h3 class="detailed-stats-title"><i class="fas fa-chart-simple"></i> آمار تفصیلی</h3>
-                            <div class="stats-grid">
-                                <div class="stats-row">
-                                    <div class="stats-item">
-                                        <span class="stats-label">موجودی اولیه:</span>
-                                        <span class="stats-value" id="initialBalance">$0</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">موجودی فعلی:</span>
-                                        <span class="stats-value" id="currentBalanceStats">$0</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">سود و ضرر:</span>
-                                        <span class="stats-value" id="totalPnLStats">$0</span>
-                                    </div>
-                                </div>
-                                <div class="stats-row">
-                                    <div class="stats-item">
-                                        <span class="stats-label">درصد سود:</span>
-                                        <span class="stats-value percentage-box" id="profitPercentage">0%</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">سود خالص:</span>
-                                        <span class="stats-value positive-box" id="netProfit">$0</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">ضرر خالص:</span>
-                                        <span class="stats-value negative-box" id="netLoss">$0</span>
-                                    </div>
-                                </div>
-                                <div class="stats-row">
-                                    <div class="stats-item">
-                                        <span class="stats-label">تعداد کل معاملات:</span>
-                                        <span class="stats-value" id="totalTradesStats">0</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">تعداد معاملات لانگ:</span>
-                                        <span class="stats-value" id="longTradesCount">0</span>
-                                    </div>
-                                    <div class="stats-item">
-                                        <span class="stats-label">تعداد معاملات شورت:</span>
-                                        <span class="stats-value" id="shortTradesCount">0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- نمودار رشد حساب -->
-                        <div class="growth-chart-container">
-                            <h3 class="growth-chart-title"><i class="fas fa-chart-line"></i> رشد حساب کلی</h3>
-                            <canvas id="accountGrowthChart"></canvas>
-                            <div class="chart-axis-labels">
-                                <span class="axis-label x-axis">تعداد معاملات</span>
-                                <span class="axis-label y-axis">رشد سرمایه ($)</span>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <!-- بخش پشتیبان‌گیری (مخفی در ابتدا) -->
-                    <section id="backup-section" class="section">
-                        <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> پشتیبان‌گیری</h2>
-                        <div class="backup-container">
-                            <div class="backup-card">
-                                <div class="backup-header">
-                                    <i class="fas fa-download"></i>
-                                    <h3>دریافت پشتیبان</h3>
-                                </div>
-                                <p class="backup-description">
-                                    از تمام اطلاعات و تصاویر خود یک فایل ZIP پشتیبان بگیرید.
-                                </p>
-                                <button class="btn-backup" onclick="exportData()">
-                                    <i class="fas fa-file-export"></i> دانلود پشتیبان (ZIP)
-                                </button>
-                            </div>
-                            
-                            <div class="backup-card">
-                                <div class="backup-header">
-                                    <i class="fas fa-upload"></i>
-                                    <h3>بارگذاری پشتیبان</h3>
-                                </div>
-                                <p class="backup-description">
-                                    اطلاعات قبلی خود را از فایل ZIP بازیابی کنید.
-                                </p>
-                                <input type="file" id="backupFile" class="file-input" accept=".zip">
-                                <button class="btn-backup" onclick="importData()">
-                                    <i class="fas fa-file-import"></i> بارگذاری پشتیبان (ZIP)
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- خط جدید برای آیدی تلگرام -->
-                        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #334155;">
-                            <p style="color: #94a3b8; font-size: 0.9rem;">
-                                <i class="fas fa-headset" style="color: #60a5fa; margin-left: 5px;"></i>
-                                پشتیبانی: 
-                                <a href="https://t.me/RNA7600" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 600;">
-                                    @RNA7600
-                                </a>
-                            </p>
-                        </div>
-                    </section>
-                </main>
-            </div>
-        </div>
-    </div>
-
-    <!-- اسکریپت جدا -->
-    <script src="script.js"></script>
-</body>
-</html>
