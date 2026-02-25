@@ -257,121 +257,122 @@
     <div class="app-wrapper">
         <!-- Toolbar بالا - عریض‌تر شده -->
         <div class="toolbar" style="padding: 0 50px;">
-            <div class="toolbar-header" style="min-width: 300px;">
+            <div class="toolbar-header" style="min-width: 380px;">
                 <!-- لوگوی SVG با viewBox بزرگتر برای جا شدن کامل متن -->
-<svg width="380" height="90" viewBox="0 0 900 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <!-- Background -->
-        <radialGradient id="bg" cx="50%" cy="50%" r="80%">
-            <stop offset="0%" stop-color="#0F172A"/>
-            <stop offset="100%" stop-color="#02040A"/>
-        </radialGradient>
+                <div class="custom-logo" style="margin-left: 20px;">
+                    <svg width="400" height="90" viewBox="0 0 950 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Background -->
+                            <radialGradient id="bg" cx="50%" cy="50%" r="80%">
+                                <stop offset="0%" stop-color="#0F172A"/>
+                                <stop offset="100%" stop-color="#02040A"/>
+                            </radialGradient>
 
-        <!-- Neon Green -->
-        <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
-            <stop offset="0%" stop-color="#66FF33">
-                <animate attributeName="stop-color"
-                    values="#66FF33;#00FF99;#66FF33"
-                    dur="4s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="100%" stop-color="#00FF99"/>
-        </linearGradient>
+                            <!-- Neon Green -->
+                            <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="200">
+                                <stop offset="0%" stop-color="#66FF33">
+                                    <animate attributeName="stop-color"
+                                        values="#66FF33;#00FF99;#66FF33"
+                                        dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="100%" stop-color="#00FF99"/>
+                            </linearGradient>
 
-        <!-- Neon Red -->
-        <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
-            <stop offset="0%" stop-color="#FF4D4D">
-                <animate attributeName="stop-color"
-                    values="#FF4D4D;#FF0033;#FF4D4D"
-                    dur="4s" repeatCount="indefinite"/>
-            </stop>
-            <stop offset="100%" stop-color="#FF0033"/>
-        </linearGradient>
+                            <!-- Neon Red -->
+                            <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="200">
+                                <stop offset="0%" stop-color="#FF4D4D">
+                                    <animate attributeName="stop-color"
+                                        values="#FF4D4D;#FF0033;#FF4D4D"
+                                        dur="4s" repeatCount="indefinite"/>
+                                </stop>
+                                <stop offset="100%" stop-color="#FF0033"/>
+                            </linearGradient>
 
-        <!-- Strong Glow -->
-        <filter id="glow" x="-200%" y="-200%" width="400%" height="400%">
-            <feGaussianBlur stdDeviation="10" result="blur"/>
-            <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-    </defs>
+                            <!-- Strong Glow -->
+                            <filter id="glow" x="-200%" y="-200%" width="400%" height="400%">
+                                <feGaussianBlur stdDeviation="10" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
 
-    <!-- Background - کادر بزرگتر -->
-    <rect width="900" height="350" rx="40" fill="url(#bg)"/>
+                        <!-- Background - کادر بزرگتر -->
+                        <rect width="950" height="350" rx="40" fill="url(#bg)"/>
 
-    <!-- Animated Market Line -->
-    <path d="M90 220 
-           L150 160 
-           L200 190 
-           L260 130 
-           L320 180 
-           L380 140"
-        stroke="url(#greenGrad)"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)"
-        stroke-dasharray="500"
-        stroke-dashoffset="500">
-        <animate attributeName="stroke-dashoffset"
-            from="500" to="0"
-            dur="3s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- Animated Market Line - کمی پایین‌تر -->
+                        <path d="M90 220 
+                               L150 160 
+                               L200 190 
+                               L260 130 
+                               L320 180 
+                               L380 140"
+                            stroke="url(#greenGrad)"
+                            stroke-width="5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)"
+                            stroke-dasharray="500"
+                            stroke-dashoffset="500">
+                            <animate attributeName="stroke-dashoffset"
+                                from="500" to="0"
+                                dur="3s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <!-- J -->
-    <path d="M130 100 
-           V220 
-           Q130 250 170 250 
-           Q210 250 210 200"
-        stroke="url(#greenGrad)"
-        stroke-width="16"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)">
-        <animate attributeName="stroke-width"
-            values="16;18;16"
-            dur="2s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- J - کمی جابجا شده -->
+                        <path d="M140 100 
+                               V220 
+                               Q140 250 180 250 
+                               Q220 250 220 200"
+                            stroke="url(#greenGrad)"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)">
+                            <animate attributeName="stroke-width"
+                                values="16;18;16"
+                                dur="2s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <!-- M -->
-    <path d="M470 250 
-           L510 120 
-           L550 200 
-           L590 100 
-           L630 250"
-        stroke="url(#redGrad)"
-        stroke-width="16"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        filter="url(#glow)">
-        <animate attributeName="stroke-width"
-            values="16;18;16"
-            dur="2s"
-            repeatCount="indefinite"/>
-    </path>
+                        <!-- M - کمی جابجا شده -->
+                        <path d="M520 250 
+                               L560 120 
+                               L600 200 
+                               L640 100 
+                               L680 250"
+                            stroke="url(#redGrad)"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            filter="url(#glow)">
+                            <animate attributeName="stroke-width"
+                                values="16;18;16"
+                                dur="2s"
+                                repeatCount="indefinite"/>
+                        </path>
 
-    <!-- Brand Text - با فاصله از لبه‌ها -->
-    <text x="120" y="300"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="50"
-        letter-spacing="12"
-        fill="url(#greenGrad)"
-        filter="url(#glow)">
-        JOURNAL
-    </text>
+                        <!-- Brand Text - با فاصله کافی از لبه‌ها -->
+                        <text x="120" y="300"
+                            font-family="Helvetica, Arial, sans-serif"
+                            font-size="55"
+                            letter-spacing="14"
+                            fill="url(#greenGrad)"
+                            filter="url(#glow)">
+                            JOURNAL
+                        </text>
 
-    <text x="530" y="300"
-        font-family="Helvetica, Arial, sans-serif"
-        font-size="50"
-        letter-spacing="12"
-        fill="url(#redGrad)"
-        filter="url(#glow)">
-        ME
-    </text>
-</svg>
+                        <text x="550" y="300"
+                            font-family="Helvetica, Arial, sans-serif"
+                            font-size="55"
+                            letter-spacing="14"
+                            fill="url(#redGrad)"
+                            filter="url(#glow)">
+                            ME
+                        </text>
+                    </svg>
                 </div>
             </div>
             
@@ -939,7 +940,7 @@
                             <p style="color: #94a3b8; font-size: 0.9rem;">
                                 <i class="fas fa-headset" style="color: #60a5fa; margin-left: 5px;"></i>
                                 پشتیبانی: 
-                                <a href="https://t.me/RNik3r" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 600;">
+                                <a href="https://t.me/RNA7600" target="_blank" style="color: #60a5fa; text-decoration: none; font-weight: 600;">
                                     @RNA7600
                                 </a>
                             </p>
