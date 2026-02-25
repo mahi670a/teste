@@ -2495,3 +2495,132 @@ button {
         height: 250px;
     }
 }
+/* =========================================
+   FINAL MOBILE FIX - JOURNALME
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* ===== فاصله بالای صفحه ===== */
+    .main-wrapper {
+        margin-top: 200px;
+        padding: 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    /* ===== فرم ثبت معامله ===== */
+    .form-grid,
+    .prices-grid,
+    .risk-summary,
+    .modal-grid,
+    .details-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ===== پریست دکمه‌ها ===== */
+    .preset-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* ===== اسکرین‌شات گالری ===== */
+    .screenshot-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    /* ===== معاملات باز ===== */
+    .open-trade-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .open-trade-info {
+        gap: 10px;
+    }
+
+    .open-trade-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    /* ===== بالانس ===== */
+    .balance-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .balance-details {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .balance-actions {
+        width: 100%;
+    }
+
+    .balance-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* ===== آمار ===== */
+    .stats-container,
+    .dashboard-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* ===== بکاپ ===== */
+    .backup-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* ===== دکمه‌های فرم ===== */
+    .form-actions {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* ===== مودال جزئیات ===== */
+    .details-modal-content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .close-modal-content {
+        width: 95%;
+    }
+
+    /* ===== جدول ===== */
+    .trades-table-container,
+    .monthly-trades-container {
+        overflow-x: auto;
+    }
+
+    .trades-table,
+    .monthly-trades-table {
+        min-width: 900px;
+    }
+
+}
+
+/* ===== موبایل خیلی کوچک ===== */
+@media (max-width: 480px) {
+
+    .stats-container,
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .journal-text,
+    .me-text {
+        font-size: 1.2rem;
+    }
+
+}
