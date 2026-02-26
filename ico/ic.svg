@@ -1,0 +1,47 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <!-- Green Gradient for J -->
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7CFF4F"/>
+      <stop offset="100%" stop-color="#00B67A"/>
+    </linearGradient>
+
+    <!-- Red Gradient for M -->
+    <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF3B3B"/>
+      <stop offset="100%" stop-color="#B8001C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- J Letter -->
+  <path d="
+    M140 80
+    H260
+    V130
+    H190
+    V330
+    C190 400 140 440 90 440
+    C50 440 30 410 30 380
+    H90
+    C90 395 100 400 110 400
+    C125 400 140 385 140 350
+    Z
+  " fill="url(#greenGrad)"/>
+
+  <!-- M Letter -->
+  <path d="
+    M270 440
+    V80
+    L350 220
+    L430 80
+    V440
+    H380
+    V190
+    L350 250
+    L320 190
+    V440
+    Z
+  " fill="url(#redGrad)"/>
+
+</svg>
